@@ -79,12 +79,7 @@ export default function Navbar() {
             }}
         >
             {/* ━━━━━━━━━━━━━━━━━━ LEFT — Logo only ━━━━━━━━━━━━━━━━━━ */}
-            <div
-                className="font-cormorant italic font-bold text-[1.6rem] tracking-[-0.02em]"
-                style={{ color: "#f0ede8" }}
-            >
-                VY
-            </div>
+            <div className="w-[40px] h-[40px]" /> {/* Spacer to keep flex layout balanced */}
 
             {/* ━━━━━━━━━━━━━━━━━━ CENTER — Nav links ━━━━━━━━━━━━━━━━━━ */}
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-[2.5rem]">
@@ -135,10 +130,10 @@ export default function Navbar() {
                 <a
                     href="/Vaibhav_CV.pdf"
                     download
-                    className="hidden md:flex items-center gap-[0.4rem] rounded-[100px] transition-all duration-250 ease-in-out uppercase font-mono text-[0.62rem] tracking-[0.12em]"
+                    className="hidden md:flex items-center justify-center rounded-[100px] transition-all duration-250 ease-in-out"
                     style={{
                         border: "1px solid rgba(255,255,255,0.15)",
-                        padding: "0.5rem 1.1rem",
+                        padding: "0.6rem", // Square padding for icon
                         color: "rgba(240,237,232,0.6)",
                         background: "transparent",
                         cursor: "none"
@@ -154,13 +149,13 @@ export default function Navbar() {
                         e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
                     }}
                     data-hoverable="true"
+                    aria-label="Download CV"
                 >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
                         <line x1="12" y1="15" x2="12" y2="3"></line>
                     </svg>
-                    CV
                 </a>
 
                 {/* Hire Me button (Visible on all screens) */}

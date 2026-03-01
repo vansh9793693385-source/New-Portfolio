@@ -27,11 +27,11 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity1, y: y1 }}
                 className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
             >
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-4 text-white drop-shadow-lg">
-                    My Name.
+                <h1 className="text-7xl md:text-9xl lg:text-[10rem] leading-none font-bold tracking-[1px] md:tracking-[2px] mb-4 text-white/25 drop-shadow-lg">
+                    Vaibhav Yadav
                 </h1>
-                <p className="text-xl md:text-2xl text-white/80 font-light tracking-wide">
-                    Creative Developer.
+                <p className="text-3xl md:text-4xl lg:text-5xl text-white/20 font-medium tracking-wide mt-4">
+                    Creative Developer
                 </p>
             </motion.div>
 
@@ -40,8 +40,10 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity2, y: y2 }}
                 className="absolute inset-0 flex flex-col items-start justify-center text-left px-8 md:px-24"
             >
-                <h2 className="text-4xl md:text-6xl font-bold tracking-tight max-w-2xl text-white drop-shadow-md">
-                    I build digital experiences.
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/60 drop-shadow-md">
+                    I build digital
+                    <br />
+                    <span className="text-orange-500">experiences.</span>
                 </h2>
             </motion.div>
 
@@ -50,8 +52,10 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity3, y: y3 }}
                 className="absolute inset-0 flex flex-col items-end justify-center text-right px-8 md:px-24"
             >
-                <h2 className="text-4xl md:text-6xl font-bold tracking-tight max-w-2xl text-white drop-shadow-md">
-                    Bridging design and engineering.
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/60 drop-shadow-md">
+                    Bridging design and
+                    <br />
+                    <span className="text-orange-500">engineering.</span>
                 </h2>
             </motion.div>
 
