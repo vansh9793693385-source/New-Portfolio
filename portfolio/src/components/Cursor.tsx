@@ -15,6 +15,7 @@ export default function Cursor() {
     // States
     const isHovering = useRef(false);
     const isInsidePage = useRef(true);
+    const hoverTarget = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         // Hide totally on mobile
@@ -29,16 +30,14 @@ export default function Cursor() {
 
         const onMouseOver = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
-            if (
-                target.tagName.toLowerCase() === "a" ||
-                target.tagName.toLowerCase() === "button" ||
-                target.closest("a") ||
-                target.closest("button") ||
-                target.closest("[data-hoverable='true']")
-            ) {
+            const interactiveElement = target.closest("a, button, [data-hoverable='true']") as HTMLElement;
+
+            if (interactiveElement) {
                 isHovering.current = true;
+                hoverTarget.current = interactiveElement;
             } else {
                 isHovering.current = false;
+                hoverTarget.current = null;
             }
         };
 
@@ -65,27 +64,45 @@ export default function Cursor() {
                 outer.current.y = targetY;
             }
 
-            // Lerp outer ring
-            outer.current.x += (targetX - outer.current.x) * 0.08;
-            outer.current.y += (targetY - outer.current.y) * 0.08;
-
-            // Outer scale lerp
-            const targetOuterScale = isHovering.current ? 1.8 : 1;
-            outer.current.scale += (targetOuterScale - outer.current.scale) * 0.1;
-
             // Inner scale lerp
             const targetInnerScale = isHovering.current ? 0 : 1;
             inner.current.scale += (targetInnerScale - inner.current.scale) * 0.2;
 
             // Only update transforms if cursor is inside page
             if (isInsidePage.current) {
-                if (outerRef.current) {
-                    outerRef.current.style.transform = `translate3d(${outer.current.x}px, ${outer.current.y}px, 0) translate(-50%, -50%) scale(${outer.current.scale})`;
+                if (isHovering.current && hoverTarget.current) {
+                    const rect = hoverTarget.current.getBoundingClientRect();
+                    const padding = 12; // Added padding around the element
 
-                    if (isHovering.current) {
-                        outerRef.current.style.borderColor = "#ff5533";
-                        outerRef.current.style.backgroundColor = "rgba(255,85,51,0.08)";
-                    } else {
+                    const targetWidth = rect.width + padding;
+                    const targetHeight = rect.height + padding;
+
+                    // Magnetic snapping: move cursor towards the center of the hovered element
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+
+                    // Smooth lerp to center
+                    outer.current.x += (centerX - outer.current.x) * 0.15;
+                    outer.current.y += (centerY - outer.current.y) * 0.15;
+
+                    if (outerRef.current) {
+                        outerRef.current.style.transform = `translate3d(${outer.current.x}px, ${outer.current.y}px, 0) translate(-50%, -50%)`;
+                        outerRef.current.style.width = `${targetWidth}px`;
+                        outerRef.current.style.height = `${targetHeight}px`;
+                        outerRef.current.style.borderRadius = "8px"; // Match object roundness
+                        outerRef.current.style.borderColor = "#3b82f6";
+                        outerRef.current.style.backgroundColor = "rgba(59, 130, 246, 0.08)";
+                    }
+                } else {
+                    // Normal follow mouse
+                    outer.current.x += (targetX - outer.current.x) * 0.08;
+                    outer.current.y += (targetY - outer.current.y) * 0.08;
+
+                    if (outerRef.current) {
+                        outerRef.current.style.transform = `translate3d(${outer.current.x}px, ${outer.current.y}px, 0) translate(-50%, -50%)`;
+                        outerRef.current.style.width = "32px";
+                        outerRef.current.style.height = "32px";
+                        outerRef.current.style.borderRadius = "50%"; // Circle shape
                         outerRef.current.style.borderColor = "rgba(255,255,255,0.6)";
                         outerRef.current.style.backgroundColor = "transparent";
                     }
@@ -93,12 +110,7 @@ export default function Cursor() {
 
                 if (innerRef.current) {
                     innerRef.current.style.transform = `translate3d(${targetX}px, ${targetY}px, 0) translate(-50%, -50%) scale(${inner.current.scale})`;
-
-                    if (isHovering.current) {
-                        innerRef.current.style.backgroundColor = "#ff5533";
-                    } else {
-                        innerRef.current.style.backgroundColor = "#ffffff";
-                    }
+                    innerRef.current.style.backgroundColor = isHovering.current ? "#3b82f6" : "#ffffff";
                 }
             }
 
@@ -125,7 +137,10 @@ export default function Cursor() {
             <div
                 ref={outerRef}
                 className="fixed top-0 left-0 w-[32px] h-[32px] rounded-full border-[1.5px] border-white/60 bg-transparent pointer-events-none z-[9999] hidden md:block"
-                style={{ willChange: "transform, border-color, background-color", transition: "opacity 0.15s ease" }}
+                style={{
+                    willChange: "transform, border-color, background-color, border-radius, width, height",
+                    transition: "opacity 0.15s ease, border-radius 0.2s ease, width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease"
+                }}
             />
             <div
                 ref={innerRef}

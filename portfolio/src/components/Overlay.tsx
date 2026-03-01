@@ -25,7 +25,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             {/* Section 1: Center */}
             <motion.div
                 style={{ opacity: opacity1, y: y1 }}
-                className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
+                className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pt-32 md:pt-48 lg:pt-[280px]"
             >
                 <h1 className="text-7xl md:text-9xl lg:text-[10rem] leading-none font-bold tracking-[1px] md:tracking-[2px] mb-4 text-white/25 drop-shadow-lg">
                     Vaibhav Yadav
