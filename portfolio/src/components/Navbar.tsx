@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const NAV_LINKS = [
     { label: "About", id: "about", color: "#4d9eff", glow: "rgba(77,158,255,0.5)", origin: "left", hoverTransform: "scale(1.1) translateX(2px)" },
@@ -12,13 +12,18 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false);
+    const navRef = useRef<HTMLElement>(null);
     const [activeSection, setActiveSection] = useState("");
 
-    // Scroll detection for navbar background
+    // Scroll detection — direct DOM class toggle, no re-render
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 60);
+            if (!navRef.current) return;
+            if (window.scrollY > 60) {
+                navRef.current.classList.add("nav-scrolled");
+            } else {
+                navRef.current.classList.remove("nav-scrolled");
+            }
         };
 
         window.addEventListener("scroll", handleScroll, { passive: true });
@@ -69,17 +74,12 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-[400] h-[64px] flex justify-between items-center px-[3.5vw] transition-all duration-400 ease-in-out ${scrolled
-                ? "bg-[#06060880] backdrop-blur-[20px] backdrop-saturate-[1.8] border-b border-white/5"
-                : "bg-transparent border-b border-transparent"
-                }`}
-            style={{
-                backgroundColor: scrolled ? "rgba(6,6,8,0.5)" : "transparent",
-                borderBottomColor: scrolled ? "rgba(255,255,255,0.06)" : "transparent"
-            }}
+            ref={navRef}
+            className="fixed top-0 left-0 right-0 z-[400] h-[64px] flex justify-between items-center px-[3.5vw] transition-all duration-300 ease-in-out bg-transparent border-b border-transparent"
+            style={{ willChange: "background-color, border-color, backdrop-filter" }}
         >
             {/* ━━━━━━━━━━━━━━━━━━ LEFT — Logo only ━━━━━━━━━━━━━━━━━━ */}
-            <div className="w-[40px] h-[40px]" /> {/* Spacer to keep flex layout balanced */}
+            <div className="w-[40px] h-[40px]" />
 
             {/* ━━━━━━━━━━━━━━━━━━ CENTER — Nav links ━━━━━━━━━━━━━━━━━━ */}
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-[2.5rem]">

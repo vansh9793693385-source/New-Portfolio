@@ -202,6 +202,7 @@ export default function ScrollyCanvas() {
                 <canvas
                     ref={canvasRef}
                     className="absolute inset-0 w-full h-full object-cover"
+                    style={{ willChange: "contents", imageRendering: "pixelated" }}
                 />
                 <div className="absolute inset-0 bg-black/30 w-full h-full z-10 pointer-events-none" />
                 <Overlay scrollYProgress={scrollYProgress} />

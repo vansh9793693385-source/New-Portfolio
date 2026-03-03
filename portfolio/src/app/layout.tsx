@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Cormorant } from "next/font/google";
 import "./globals.css";
-import Cursor from "@/components/Cursor";
 import SocialSidebar from "@/components/SocialSidebar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -20,7 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased bg-[#121212] text-white w-full`}>
-        <Cursor />
         <SocialSidebar />
         {children}
       </body>

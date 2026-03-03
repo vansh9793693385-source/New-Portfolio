@@ -9,12 +9,14 @@ export default function Cursor() {
 
     // Mouse positions
     const mouse = useRef({ x: 0, y: 0 });
-    const outer = useRef({ x: 0, y: 0, scale: 1 });
-    const inner = useRef({ scale: 1 });
+    const outer = useRef({ x: 0, y: 0 });
 
     // States
     const isHovering = useRef(false);
     const isInsidePage = useRef(true);
+
+    // Cache rect to avoid layout reads every frame
+    const cachedRect = useRef<DOMRect | null>(null);
     const hoverTarget = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
@@ -34,10 +36,22 @@ export default function Cursor() {
 
             if (interactiveElement) {
                 isHovering.current = true;
-                hoverTarget.current = interactiveElement;
+                // Only read rect when target changes — not every frame
+                if (hoverTarget.current !== interactiveElement) {
+                    hoverTarget.current = interactiveElement;
+                    cachedRect.current = interactiveElement.getBoundingClientRect();
+                }
             } else {
                 isHovering.current = false;
                 hoverTarget.current = null;
+                cachedRect.current = null;
+            }
+        };
+
+        // Refresh cached rect on scroll so snapping stays accurate
+        const onScroll = () => {
+            if (hoverTarget.current) {
+                cachedRect.current = hoverTarget.current.getBoundingClientRect();
             }
         };
 
@@ -64,20 +78,15 @@ export default function Cursor() {
                 outer.current.y = targetY;
             }
 
-            // Inner scale lerp
-            const targetInnerScale = isHovering.current ? 0 : 1;
-            inner.current.scale += (targetInnerScale - inner.current.scale) * 0.2;
-
             // Only update transforms if cursor is inside page
             if (isInsidePage.current) {
-                if (isHovering.current && hoverTarget.current) {
-                    const rect = hoverTarget.current.getBoundingClientRect();
-                    const padding = 12; // Added padding around the element
+                if (isHovering.current && cachedRect.current) {
+                    const rect = cachedRect.current; // NO layout read — cached
+                    const padding = 12;
 
                     const targetWidth = rect.width + padding;
                     const targetHeight = rect.height + padding;
 
-                    // Magnetic snapping: move cursor towards the center of the hovered element
                     const centerX = rect.left + rect.width / 2;
                     const centerY = rect.top + rect.height / 2;
 
@@ -90,7 +99,7 @@ export default function Cursor() {
                         outerRef.current.style.transform = `translate3d(${outer.current.x}px, ${outer.current.y}px, 0) translate(-50%, -50%)`;
                         outerRef.current.style.width = `${targetWidth}px`;
                         outerRef.current.style.height = `${targetHeight}px`;
-                        outerRef.current.style.borderRadius = "8px"; // Match object roundness
+                        outerRef.current.style.borderRadius = "8px";
                         outerRef.current.style.borderColor = "#3b82f6";
                         outerRef.current.style.backgroundColor = "rgba(59, 130, 246, 0.08)";
                     }
@@ -100,21 +109,22 @@ export default function Cursor() {
                     outer.current.y += (targetY - outer.current.y) * 0.08;
 
                     if (outerRef.current) {
-                        outerRef.current.style.opacity = "0"; // Hide when not hovering
+                        outerRef.current.style.opacity = "0";
                         outerRef.current.style.transform = `translate3d(${outer.current.x}px, ${outer.current.y}px, 0) translate(-50%, -50%)`;
                     }
                 }
 
                 if (innerRef.current) {
-                    innerRef.current.style.opacity = "0"; // Always hide inner dot
+                    innerRef.current.style.opacity = "0";
                 }
             }
 
             requestRef.current = requestAnimationFrame(render);
         };
 
-        window.addEventListener("mousemove", onMouseMove);
-        window.addEventListener("mouseover", onMouseOver);
+        window.addEventListener("mousemove", onMouseMove, { passive: true });
+        window.addEventListener("mouseover", onMouseOver, { passive: true });
+        window.addEventListener("scroll", onScroll, { passive: true });
         document.documentElement.addEventListener("mouseleave", onPageLeave);
         document.documentElement.addEventListener("mouseenter", onPageEnter);
         requestRef.current = requestAnimationFrame(render);
@@ -122,6 +132,7 @@ export default function Cursor() {
         return () => {
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("mouseover", onMouseOver);
+            window.removeEventListener("scroll", onScroll);
             document.documentElement.removeEventListener("mouseleave", onPageLeave);
             document.documentElement.removeEventListener("mouseenter", onPageEnter);
             if (requestRef.current) cancelAnimationFrame(requestRef.current);
@@ -134,14 +145,14 @@ export default function Cursor() {
                 ref={outerRef}
                 className="fixed top-0 left-0 w-[32px] h-[32px] rounded-full border-[1.5px] border-white/60 bg-transparent pointer-events-none z-[9999] hidden md:block"
                 style={{
-                    willChange: "transform, border-color, background-color, border-radius, width, height",
+                    willChange: "transform, opacity",
                     transition: "opacity 0.15s ease, border-radius 0.2s ease, width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background-color 0.2s ease"
                 }}
             />
             <div
                 ref={innerRef}
                 className="fixed top-0 left-0 w-[6px] h-[6px] rounded-full bg-white pointer-events-none z-[9999] hidden md:block"
-                style={{ willChange: "transform, background-color", transition: "opacity 0.15s ease" }}
+                style={{ willChange: "transform, opacity", transition: "opacity 0.15s ease" }}
             />
         </>
     );
