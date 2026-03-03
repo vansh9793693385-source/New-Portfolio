@@ -190,7 +190,7 @@ export default function Skills() {
                     <div className="relative flex items-center justify-center">
                         <div className="absolute w-28 h-28 bg-purple-500/20 rounded-full blur-xl animate-pulse" />
                         <motion.div whileHover={{ scale: 1.05 }} className="px-6 py-3 bg-[#111] border border-purple-500/50 rounded-full shadow-[0_0_30px_rgba(168,85,247,0.4)] backdrop-blur-xl cursor-default">
-                            <span className="text-sm md:text-lg font-bold text-white tracking-widest uppercase">Vy / Architect</span>
+                            <span className="text-sm md:text-lg font-bold text-white tracking-widest uppercase">System Core</span>
                         </motion.div>
                     </div>
                 </div>
