@@ -107,52 +107,84 @@ export default function About() {
                         </p>
                     </motion.div>
 
-                    {/* Career Timeline */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-                        className="space-y-6 font-mono text-sm md:text-base border-l border-white/10 ml-2 pl-6"
-                    >
-                        {/* 2023 */}
-                        <div className="relative block">
-                            <span className="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-[#ff5533] shadow-[0_0_10px_#ff5533]" />
-                            <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:gap-4">
-                                <span className="text-[#ff5533] font-bold">2023</span>
-                                <span className="text-white/90 font-medium text-base">Started the Engineering Journey</span>
+                    {/* Career Timeline - Advanced 3D Interactive Design */}
+                    <div className="relative w-full mt-8 lg:mt-0 perspective-[1000px]">
+                        <motion.div
+                            initial={{ opacity: 0, rotateX: 10, y: 30 }}
+                            whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+                            className="relative space-y-6 md:space-y-8 pl-8 md:pl-10 transform-style-3d"
+                        >
+                            {/* Glowing Animated Vertical Axis Beam */}
+                            <div className="absolute left-0 top-2 bottom-6 w-[2px] bg-white/5 rounded-full overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#00ff88] to-transparent h-1/2 w-full animate-[pulse_3s_ease-in-out_infinite_alternate]" />
+                                <div className="absolute left-[-1px] top-0 bottom-0 w-[4px] bg-[#00ff88]/20 blur-sm" />
                             </div>
-                            <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-1 line-clamp-3">
-                                Ignited my passion for software architecture, diving deep into computer science fundamentals. I laid the technical groundwork by understanding how digital systems operate under the hood.
-                            </p>
-                        </div>
 
-                        {/* 2024 */}
-                        <div className="relative block">
-                            <span className="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-gradient-to-r from-[#ff5533] to-[#00ff88]" />
-                            <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:gap-4">
-                                <span className="bg-gradient-to-r from-[#ff5533] to-[#00ff88] text-transparent bg-clip-text font-bold">2024</span>
-                                <span className="text-white/90 font-medium text-base">Embraced Full-Stack Development</span>
-                            </div>
-                            <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-1 line-clamp-3">
-                                Transitioned into building production-ready applications. I mastered modern web frameworks and crafted immersive user experiences wrapped around scalable backend architectures.
-                            </p>
-                        </div>
+                            {/* 2023 Block */}
+                            <div className="relative group perspective-[800px]">
+                                {/* Timeline Node Indicator */}
+                                <div className="absolute -left-[38px] md:-left-[46px] top-2 z-10 w-5 h-5 md:w-6 md:h-6 rounded-md bg-[#121212] border border-[#ff5533]/50 flex items-center justify-center transform rotate-45 transition-all duration-500 group-hover:bg-[#ff5533]/20 group-hover:scale-125 group-hover:border-[#ff5533] group-hover:shadow-[0_0_15px_rgba(255,85,51,0.6)]">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ff5533]" />
+                                </div>
 
-                        {/* 2025 */}
-                        <div className="relative block">
-                            <span className="absolute -left-[29px] top-1.5 w-2 h-2 rounded-full bg-[#00ff88] shadow-[0_0_10px_#00ff88]" />
-                            <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:gap-4">
-                                <span className="text-[#00ff88] font-bold">2025</span>
-                                <span className="text-white/90 font-medium text-base">Ventured into Cybersecurity</span>
+                                {/* 3D Card Content */}
+                                <div className="relative w-full p-5 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-md transition-all duration-500 ease-out transform-style-3d group-hover:[transform:translateZ(30px)_translateX(10px)] group-hover:-translate-y-2 group-hover:border-[#ff5533]/40 group-hover:shadow-[-20px_20px_30px_rgba(0,0,0,0.5)]">
+                                    {/* Accent Glow on Hover */}
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#ff5533]/10 to-transparent rounded-xl pointer-events-none" />
+
+                                    <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:gap-4 relative z-10">
+                                        <span className="text-[#ff5533] font-bold font-mono tracking-wider tabular-nums text-lg drop-shadow-[0_0_8px_rgba(255,85,51,0.5)] group-hover:scale-110 transition-transform origin-left">2023</span>
+                                        <span className="text-white/90 font-medium text-base md:text-lg tracking-wide uppercase text-xs sm:text-sm">Started the Engineering Journey</span>
+                                    </div>
+                                    <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-2 z-10 relative">
+                                        Ignited my passion for software architecture, diving deep into computer science fundamentals. I laid the technical groundwork by understanding how digital systems operate under the hood.
+                                    </p>
+                                </div>
                             </div>
-                            <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-1 line-clamp-3">
-                                Developed a hacker&apos;s mindset to uncover critical vulnerabilities. Leveraging my development background, I hunt for exploits and secure application perimeters from the inside out.
-                            </p>
-                        </div>
-                    </motion.div>
+
+                            {/* 2024 Block */}
+                            <div className="relative group perspective-[800px]">
+                                <div className="absolute -left-[38px] md:-left-[46px] top-2 z-10 w-5 h-5 md:w-6 md:h-6 rounded-md bg-[#121212] border border-white/20 flex items-center justify-center transform rotate-45 transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-[#ff5533]/20 group-hover:to-[#00ff88]/20 group-hover:scale-125 group-hover:border-[#00ff88]/80 group-hover:shadow-[0_0_15px_rgba(0,255,136,0.6)]">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gradient-to-br from-[#ff5533] to-[#00ff88]" />
+                                </div>
+
+                                <div className="relative w-full p-5 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-md transition-all duration-500 ease-out transform-style-3d group-hover:[transform:translateZ(30px)_translateX(10px)] group-hover:-translate-y-2 group-hover:border-[#00ff88]/30 group-hover:shadow-[-20px_20px_30px_rgba(0,0,0,0.5)]">
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-gradient-to-r from-[#ff5533]/5 to-[#00ff88]/10 rounded-xl pointer-events-none" />
+
+                                    <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:gap-4 relative z-10">
+                                        <span className="bg-gradient-to-r from-[#ff5533] to-[#00ff88] text-transparent bg-clip-text font-bold font-mono tracking-wider tabular-nums text-lg group-hover:scale-110 transition-transform origin-left">2024</span>
+                                        <span className="text-white/90 font-medium text-base md:text-lg tracking-wide uppercase text-xs sm:text-sm">Embraced Full-Stack Development</span>
+                                    </div>
+                                    <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-2 relative z-10">
+                                        Transitioned into building production-ready applications. I mastered modern web frameworks and crafted immersive user experiences wrapped around scalable backend architectures.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* 2025 Block */}
+                            <div className="relative group perspective-[800px]">
+                                <div className="absolute -left-[38px] md:-left-[46px] top-2 z-10 w-5 h-5 md:w-6 md:h-6 rounded-md bg-[#121212] border border-[#00ff88]/50 flex items-center justify-center transform rotate-45 transition-all duration-500 group-hover:bg-[#00ff88]/20 group-hover:scale-125 group-hover:border-[#00ff88] group-hover:shadow-[0_0_15px_rgba(0,255,136,0.6)]">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#00ff88]" />
+                                </div>
+
+                                <div className="relative w-full p-5 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-md transition-all duration-500 ease-out transform-style-3d group-hover:[transform:translateZ(30px)_translateX(10px)] group-hover:-translate-y-2 group-hover:border-[#00ff88]/40 group-hover:shadow-[-20px_20px_30px_rgba(0,0,0,0.5)]">
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#00ff88]/10 to-transparent rounded-xl pointer-events-none" />
+
+                                    <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:gap-4 relative z-10">
+                                        <span className="text-[#00ff88] font-bold font-mono tracking-wider tabular-nums text-lg drop-shadow-[0_0_8px_rgba(0,255,136,0.5)] group-hover:scale-110 transition-transform origin-left">2025</span>
+                                        <span className="text-white/90 font-medium text-base md:text-lg tracking-wide uppercase text-xs sm:text-sm">Ventured into Cybersecurity</span>
+                                    </div>
+                                    <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-2 relative z-10">
+                                        Developed a hacker&apos;s mindset to uncover critical vulnerabilities. Leveraging my development background, I hunt for exploits and secure application perimeters from the inside out.
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+
                 </div>
-
             </div>
         </section>
     );
