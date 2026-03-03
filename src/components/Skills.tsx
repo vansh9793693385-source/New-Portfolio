@@ -82,10 +82,10 @@ const SubDomainNode = ({ data }: { data: SubDomainData }) => {
 
     return (
         <div
-            className="absolute top-0 left-0 w-0 h-0 transform-style-3d z-20"
+            className="absolute top-0 left-0 w-0 h-0 transform-style-3d z-20 opacity-0 scale-50 group-hover/domain:opacity-100 group-hover/domain:scale-100 transition-all duration-700 pointer-events-none group-hover/domain:pointer-events-auto"
             style={{ transform: `translate(${x}px, ${y}px)` }}
         >
-            <div className="absolute top-0 left-0 w-0 h-0 animate-[spin_25s_linear_infinite_reverse] transform-style-3d">
+            <div className="absolute top-0 left-0 w-0 h-0 animate-[spin_25s_linear_infinite_reverse] group-hover/domain:[animation-play-state:paused] transform-style-3d">
                 <div
                     className="absolute top-0 left-0 w-0 h-0 transform-style-3d flex justify-center items-center z-30 pointer-events-auto"
                     style={{ transform: 'rotateX(-60deg)' }}
@@ -95,7 +95,7 @@ const SubDomainNode = ({ data }: { data: SubDomainData }) => {
                     </div>
                 </div>
 
-                <div className="absolute top-0 left-0 w-0 h-0 transform-style-3d animate-[spin_15s_linear_infinite]">
+                <div className="absolute top-0 left-0 w-0 h-0 transform-style-3d animate-[spin_15s_linear_infinite] group-hover/domain:[animation-play-state:paused]">
                     <div
                         className="absolute top-0 left-0 rounded-full border border-dashed border-white/10"
                         style={{
@@ -119,20 +119,23 @@ const DomainNode = ({ data }: { data: DomainData }) => {
 
     return (
         <div
-            className="absolute top-0 left-0 w-0 h-0 transform-style-3d z-30"
+            className="absolute top-0 left-0 w-0 h-0 transform-style-3d z-30 group/domain"
             style={{ transform: `translate(${x}px, ${y}px)` }}
         >
-            <div className="absolute top-0 left-0 w-0 h-0 animate-[spin_40s_linear_infinite_reverse] transform-style-3d">
+            <div className="absolute top-0 left-0 w-0 h-0 animate-[spin_30s_linear_infinite_reverse] group-hover/domain:[animation-play-state:paused] transform-style-3d">
 
                 {/* Visuals */}
                 <div
-                    className="absolute top-0 left-0 w-0 h-0 transform-style-3d flex justify-center items-center z-40 pointer-events-auto"
+                    className="absolute top-0 left-0 w-0 h-0 transform-style-3d flex justify-center items-center z-40"
                     style={{ transform: 'rotateX(-60deg)' }}
                 >
+                    {/* The "Planet" Hover Area Bubble */}
+                    <div className="absolute w-48 h-48 rounded-full pointer-events-auto cursor-pointer" />
+
                     <div className={`absolute w-32 h-32 rounded-full bg-gradient-to-br ${data.colorClass} opacity-20 blur-2xl animate-pulse`} />
                     <div className="absolute w-8 h-8 rounded-full bg-[#121212] border-[3px]" style={{ borderColor: data.hex, boxShadow: `0 0 20px ${data.hex}` }} />
                     <div
-                        className="absolute text-2xl md:text-4xl font-cormorant font-bold italic drop-shadow-2xl whitespace-nowrap translate-y-12"
+                        className="absolute text-2xl md:text-4xl font-cormorant font-bold italic drop-shadow-2xl whitespace-nowrap translate-y-12 transition-transform duration-300 group-hover/domain:scale-110"
                         style={{ color: '#fff', textShadow: `0 0 20px ${data.hex}` }}
                     >
                         {data.name}
@@ -140,9 +143,9 @@ const DomainNode = ({ data }: { data: DomainData }) => {
                 </div>
 
                 {/* SubDomain Galaxy */}
-                <div className="absolute top-0 left-0 w-0 h-0 transform-style-3d animate-[spin_25s_linear_infinite]">
+                <div className="absolute top-0 left-0 w-0 h-0 transform-style-3d animate-[spin_20s_linear_infinite] group-hover/domain:[animation-play-state:paused]">
                     <div
-                        className="absolute top-0 left-0 rounded-full border border-white/10"
+                        className="absolute top-0 left-0 rounded-full border border-white/5 opacity-0 group-hover/domain:opacity-100 transition-opacity duration-700"
                         style={{
                             width: SUB_RADIUS * 2,
                             height: SUB_RADIUS * 2,
