@@ -39,11 +39,11 @@ function SocialIcon({ href, icon }: { href: string; icon: keyof typeof icons }) 
             <div
                 className="absolute inset-0 rounded-full flex items-center justify-center transition-all duration-300"
                 style={{
-                    background: hovered ? "linear-gradient(135deg, #ff5533, #ff8c00)" : "transparent",
+                    background: hovered ? "linear-gradient(135deg, #00bfff, #00ff88)" : "transparent",
                     border: hovered ? "1px solid transparent" : "1px solid rgba(255,255,255,0.15)",
                     boxShadow: hovered ? "0 0 20px rgba(255,85,51,0.5), inset 0 0 10px rgba(255,255,255,0.2)" : "none",
-                    transform: hovered ? "translateZ(10px) scale(1.1)" : "translateZ(0) scale(1)",
                     color: hovered ? "#fff" : "rgba(255,255,255,0.5)",
+                    transform: hovered ? "translateZ(10px) scale(1.1)" : "translateZ(0) scale(1)",
                     transformStyle: "preserve-3d"
                 }}
             >
@@ -87,10 +87,10 @@ function EmailCard() {
                 className="rounded-2xl p-[1.5px] transition-all duration-500"
                 style={{
                     background: hovered
-                        ? `linear-gradient(${gloss.x * 1.8}deg, #ff5533, #ff8c00 60%, rgba(255,255,255,0.08))`
+                        ? `linear-gradient(${gloss.x * 1.8}deg, #00bfff, #00ff88 60%, rgba(255,255,255,0.08))`
                         : "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02))",
                     boxShadow: hovered
-                        ? "0 0 32px rgba(255,85,51,0.4), 0 0 80px rgba(255,85,51,0.12)"
+                        ? "0 0 32px rgba(0,191,255,0.4), 0 0 80px rgba(0,191,255,0.12)"
                         : "0 4px 24px rgba(0,0,0,0.4)",
                 }}
             >
@@ -129,7 +129,7 @@ function EmailCard() {
                                 width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" strokeWidth="1.6"
                                 className="transition-colors duration-300"
-                                style={{ color: hovered ? "#ff5533" : "rgba(255,255,255,0.35)" }}
+                                style={{ color: hovered ? "#00bfff" : "rgba(255,255,255,0.35)" }}
                             >
                                 <rect x="2" y="4" width="20" height="16" rx="2" />
                                 <path d="M2 7l10 7 10-7" />
@@ -139,8 +139,8 @@ function EmailCard() {
                             </span>
                             {/* Animated ping dot */}
                             <span className="relative flex h-2 w-2 ml-auto">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff5533] opacity-60" />
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#ff5533]" />
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00bfff] opacity-60" />
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00bfff]" />
                             </span>
                         </div>
 
@@ -159,7 +159,7 @@ function EmailCard() {
                             </p>
                             <div className="flex items-center gap-2 mt-2">
                                 <span
-                                    className="h-[1px] bg-[#ff5533] transition-all duration-500"
+                                    className="h-[1px] bg-[#00bfff] transition-all duration-500"
                                     style={{ width: hovered ? "2.5rem" : "1.25rem", opacity: hovered ? 1 : 0.4 }}
                                 />
                                 <span className="text-[10px] font-mono tracking-widest text-white/25 uppercase">
@@ -191,11 +191,11 @@ export default function Contact() {
                     {/* Header */}
                     <div className="relative">
                         {/* Decorative glow behind heading */}
-                        <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#ff5533] rounded-full blur-[100px] opacity-20 pointer-events-none" />
+                        <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#00bfff] rounded-full blur-[100px] opacity-20 pointer-events-none" />
 
-                        <h2 className="text-5xl md:text-7xl lg:text-[5rem] font-sans font-medium tracking-tight text-[#f2ede4] leading-[1.1] relative z-10">
+                        <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-sans font-medium tracking-tight text-[#f2ede4] leading-[1.1] relative z-10">
                             Lets Work <br />
-                            <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]">
+                            <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">
                                 Together.
                             </span>
                         </h2>
@@ -210,14 +210,14 @@ export default function Contact() {
                         <div className="flex flex-col md:flex-row gap-8">
                             {/* Name Input */}
                             <div className="flex flex-col gap-3 w-full group">
-                                <label htmlFor="name" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#ff5533] transition-colors flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#ff5533] transition-colors" />
+                                <label htmlFor="name" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#00bfff] transition-colors flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#00bfff] transition-colors" />
                                     Name
                                 </label>
                                 <input
                                     type="text"
                                     id="name"
-                                    className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#ff5533]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
+                                    className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#00bfff]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
                                     placeholder="Aryan"
                                     autoComplete="off"
                                 />
@@ -225,14 +225,14 @@ export default function Contact() {
 
                             {/* Email Input */}
                             <div className="flex flex-col gap-3 w-full group">
-                                <label htmlFor="email" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#ff5533] transition-colors flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#ff5533] transition-colors" />
+                                <label htmlFor="email" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#00bfff] transition-colors flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#00bfff] transition-colors" />
                                     Email
                                 </label>
                                 <input
                                     type="email"
                                     id="email"
-                                    className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#ff5533]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
+                                    className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#00bfff]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)]"
                                     placeholder="aryan@gmail.com"
                                     autoComplete="off"
                                 />
@@ -241,14 +241,14 @@ export default function Contact() {
 
                         {/* Row 2: Work Details */}
                         <div className="flex flex-col gap-3 w-full group">
-                            <label htmlFor="details" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#ff5533] transition-colors flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#ff5533] transition-colors" />
+                            <label htmlFor="details" className="text-[11px] font-mono tracking-widest text-white/40 uppercase group-focus-within:text-[#00bfff] transition-colors flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-white/20 group-focus-within:bg-[#00bfff] transition-colors" />
                                 Work Details
                             </label>
                             <textarea
                                 id="details"
                                 rows={4}
-                                className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#ff5533]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)] resize-none"
+                                className="w-full bg-white/[0.03] hover:bg-white/[0.05] border border-white/5 focus:border-[#00bfff]/40 focus:bg-white/[0.06] rounded-2xl px-5 py-4 outline-none transition-all duration-300 text-white text-[15px] shadow-[inset_0_1px_1px_rgba(255,255,255,0.02)] resize-none"
                                 placeholder="Tell me about your project, timeline, and goals..."
                             />
                         </div>
@@ -260,17 +260,17 @@ export default function Contact() {
                             data-hoverable="true"
                         >
                             {/* Animated Glow Wrapper */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#ff5533] to-[#ff8c00] rounded-full blur-md opacity-40 group-hover:opacity-70 group-hover:blur-lg transition-all duration-500" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#00bfff] to-[#00ff88] rounded-full blur-md opacity-40 group-hover:opacity-70 group-hover:blur-lg transition-all duration-500" />
 
                             {/* Inner Button Container */}
                             <div className="relative flex items-center gap-4 px-8 py-4 bg-[#121212] border border-white/10 group-hover:border-white/20 rounded-full transition-all duration-300">
-                                <span className="text-white font-medium tracking-wide text-[15px] group-hover:text-[#ff5533] transition-colors">
+                                <span className="text-white font-medium tracking-wide text-[15px] group-hover:text-[#00bfff] transition-colors">
                                     Send Message
                                 </span>
                                 <svg
                                     width="16" height="16" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                                    className="text-white group-hover:text-[#ff5533] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+                                    className="text-white group-hover:text-[#00bfff] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
                                 >
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
@@ -314,11 +314,11 @@ export default function Contact() {
                             >
                                 {/* Glowing Pin / Dot */}
                                 <div className="relative flex items-center justify-center">
-                                    <div className="absolute inset-0 bg-[#ff5533] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-300 rounded-full" />
+                                    <div className="absolute inset-0 bg-[#00bfff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-300 rounded-full" />
                                     <svg
                                         width="20" height="20" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-                                        className="text-[#ff5533] relative z-10 group-hover:-translate-y-1 transition-transform duration-300"
+                                        className="text-[#00bfff] relative z-10 group-hover:-translate-y-1 transition-transform duration-300"
                                     >
                                         <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                                         <circle cx="12" cy="10" r="3" />
@@ -335,14 +335,14 @@ export default function Contact() {
                                             Greater Noida, UP 201310
                                         </span>
                                         <span className="w-1 h-1 rounded-full bg-white/20" />
-                                        <span className="text-[12px] font-mono text-[#ff5533]/80 tracking-wider">
+                                        <span className="text-[12px] font-mono text-[#00bfff]/80 tracking-wider">
                                             India
                                         </span>
                                     </div>
                                 </div>
 
                                 {/* Hover Glow Border */}
-                                <div className="absolute inset-0 rounded-2xl border border-[#ff5533]/0 group-hover:border-[#ff5533]/30 transition-colors duration-500 pointer-events-none" />
+                                <div className="absolute inset-0 rounded-2xl border border-[#00bfff]/0 group-hover:border-[#00bfff]/30 transition-colors duration-500 pointer-events-none" />
                             </a>
                         </div>
 

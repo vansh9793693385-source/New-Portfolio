@@ -9,7 +9,7 @@ export default function About() {
         <section id="about" className="relative w-full min-h-screen bg-[#121212] py-24 md:py-32 px-6 md:px-16 lg:px-24 z-30 flex items-center overflow-hidden">
 
             {/* Ambient Background Glow for 3D effect */}
-            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#ff5533]/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#00bfff]/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#00ff88]/10 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
@@ -27,7 +27,7 @@ export default function About() {
                         <div className="relative w-full h-full transform-style-3d transition-transform duration-700 ease-out group-hover:[transform:rotateX(5deg)_rotateY(-5deg)] shadow-2xl rounded-2xl">
 
                             {/* Inner Glow Border */}
-                            <div className="absolute inset-[-2px] bg-gradient-to-br from-[#ff5533] via-transparent to-[#00ff88] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
+                            <div className="absolute inset-[-2px] bg-gradient-to-br from-[#00bfff] via-transparent to-[#00ff88] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
 
                             {/* Main Cover Image - 3D Depth & Pan Animation */}
                             <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/5 bg-[#0e0e12] [transform:translateZ(20px)] shadow-inner">
@@ -47,7 +47,7 @@ export default function About() {
 
                                 {/* Dynamic Lighting Gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-tr from-[#121212] via-[#121212]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-1000" />
-                                <div className="absolute inset-0 bg-gradient-to-bl from-[#ff5533]/20 via-transparent to-[#00ff88]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mix-blend-overlay" />
+                                <div className="absolute inset-0 bg-gradient-to-bl from-[#00bfff]/20 via-transparent to-[#00ff88]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mix-blend-overlay" />
 
                                 {/* Glitch / Scanline FX on Hover */}
                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 mix-blend-overlay shadow-[inset_0_0_100px_rgba(255,255,255,0.15)] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat" />
@@ -58,7 +58,7 @@ export default function About() {
 
                                 {/* Orbiting Holographic Rings */}
                                 <div className="absolute inset-[-15px] rounded-full border border-dashed border-[#00ff88]/50 animate-[spin_10s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-200" />
-                                <div className="absolute inset-[-25px] rounded-full border border-dotted border-[#ff5533]/50 animate-[spin_15s_linear_infinite_reverse] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-300" />
+                                <div className="absolute inset-[-25px] rounded-full border border-dotted border-[#00bfff]/50 animate-[spin_15s_linear_infinite_reverse] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 delay-300" />
 
                                 <div className="relative w-28 h-28 md:w-[140px] md:h-[140px] rounded-full border-2 border-[#00ff88]/40 overflow-hidden bg-black/40 backdrop-blur-md flex items-center justify-center shadow-inner">
                                     <img
@@ -79,18 +79,18 @@ export default function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.1, ease: [0.23, 1, 0.32, 1] }}
-                        className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight text-[#f2ede4] mb-8"
-                        style={{ textShadow: "0 4px 24px rgba(242, 237, 228, 0.15)" }}
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-medium text-[#f2ede4] leading-[1.2] tracking-tight mb-8"
                     >
-                        <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]" style={{ paddingBottom: "0.25em", paddingRight: "0.15em", display: "inline-block", overflow: "visible" }}>
-                            Digital
+                        Creative{" "}
+                        <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]" style={{ paddingBottom: "0.15em", paddingRight: "0.15em", display: "inline-block", overflow: "visible" }}>
+                            Developer
                         </span>
-                        {" "}
-                        <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]" style={{ paddingBottom: "0.25em", paddingRight: "0.15em", display: "inline-block", overflow: "visible" }}>
-                            Architect.
+                        <br />
+                        <span className="text-white/20 text-2xl sm:text-3xl md:text-4xl lg:text-5xl mr-3">&</span>
+                        Security{" "}
+                        <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]" style={{ paddingBottom: "0.15em", paddingRight: "0.15em", display: "inline-block", overflow: "visible" }}>
+                            Analyst.
                         </span>
-                        <br className="hidden md:block" />
-                        Offensive Security.
                     </motion.h2>
 
                     <motion.div
@@ -115,7 +115,7 @@ export default function About() {
                             whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-                            className="relative space-y-6 md:space-y-8 pl-8 md:pl-10 transform-style-3d"
+                            className="relative space-y-6 md:space-y-8 pl-8 md:pl-10 transform-style-3d ml-8 md:ml-0"
                         >
                             {/* Glowing Animated Vertical Axis Beam */}
                             <div className="absolute left-0 top-2 bottom-6 w-[2px] bg-white/5 rounded-full overflow-hidden">
@@ -126,17 +126,17 @@ export default function About() {
                             {/* 2023 Block */}
                             <div className="relative group perspective-[800px]">
                                 {/* Timeline Node Indicator */}
-                                <div className="absolute -left-[38px] md:-left-[46px] top-2 z-10 w-5 h-5 md:w-6 md:h-6 rounded-md bg-[#121212] border border-[#ff5533]/50 flex items-center justify-center transform rotate-45 transition-all duration-500 group-hover:bg-[#ff5533]/20 group-hover:scale-125 group-hover:border-[#ff5533] group-hover:shadow-[0_0_15px_rgba(255,85,51,0.6)]">
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#ff5533]" />
+                                <div className="absolute -left-[38px] md:-left-[46px] top-2 z-10 w-5 h-5 md:w-6 md:h-6 rounded-md bg-[#121212] border border-[#00bfff]/50 flex items-center justify-center transform rotate-45 transition-all duration-500 group-hover:bg-[#00bfff]/20 group-hover:scale-125 group-hover:border-[#00bfff] group-hover:shadow-[0_0_15px_rgba(0,191,255,0.6)]">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#00bfff]" />
                                 </div>
 
                                 {/* 3D Card Content */}
-                                <div className="relative w-full p-5 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-md transition-all duration-500 ease-out transform-style-3d group-hover:[transform:translateZ(30px)_translateX(10px)] group-hover:-translate-y-2 group-hover:border-[#ff5533]/40 group-hover:shadow-[-20px_20px_30px_rgba(0,0,0,0.5)]">
+                                <div className="relative w-full p-5 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-md transition-all duration-500 ease-out transform-style-3d group-hover:[transform:translateZ(30px)_translateX(10px)] group-hover:-translate-y-2 group-hover:border-[#00bfff]/40 group-hover:shadow-[-20px_20px_30px_rgba(0,0,0,0.5)]">
                                     {/* Accent Glow on Hover */}
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#ff5533]/10 to-transparent rounded-xl pointer-events-none" />
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#00bfff]/10 to-transparent rounded-xl pointer-events-none" />
 
                                     <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:gap-4 relative z-10">
-                                        <span className="text-[#ff5533] font-bold font-mono tracking-wider tabular-nums text-lg drop-shadow-[0_0_8px_rgba(255,85,51,0.5)] group-hover:scale-110 transition-transform origin-left">2023</span>
+                                        <span className="text-[#00bfff] font-bold font-mono tracking-wider tabular-nums text-lg drop-shadow-[0_0_8px_rgba(0,191,255,0.5)] group-hover:scale-110 transition-transform origin-left">2023</span>
                                         <span className="text-white/90 font-medium text-base md:text-lg tracking-wide uppercase text-xs sm:text-sm">Started the Engineering Journey</span>
                                     </div>
                                     <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-2 z-10 relative">
@@ -147,15 +147,15 @@ export default function About() {
 
                             {/* 2024 Block */}
                             <div className="relative group perspective-[800px]">
-                                <div className="absolute -left-[38px] md:-left-[46px] top-2 z-10 w-5 h-5 md:w-6 md:h-6 rounded-md bg-[#121212] border border-white/20 flex items-center justify-center transform rotate-45 transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-[#ff5533]/20 group-hover:to-[#00ff88]/20 group-hover:scale-125 group-hover:border-[#00ff88]/80 group-hover:shadow-[0_0_15px_rgba(0,255,136,0.6)]">
-                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gradient-to-br from-[#ff5533] to-[#00ff88]" />
+                                <div className="absolute -left-[38px] md:-left-[46px] top-2 z-10 w-5 h-5 md:w-6 md:h-6 rounded-md bg-[#121212] border border-white/20 flex items-center justify-center transform rotate-45 transition-all duration-500 group-hover:bg-gradient-to-br group-hover:from-[#00bfff]/20 group-hover:to-[#00ff88]/20 group-hover:scale-125 group-hover:border-[#00ff88]/80 group-hover:shadow-[0_0_15px_rgba(0,255,136,0.6)]">
+                                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gradient-to-br from-[#00bfff] to-[#00ff88]" />
                                 </div>
 
                                 <div className="relative w-full p-5 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-md transition-all duration-500 ease-out transform-style-3d group-hover:[transform:translateZ(30px)_translateX(10px)] group-hover:-translate-y-2 group-hover:border-[#00ff88]/30 group-hover:shadow-[-20px_20px_30px_rgba(0,0,0,0.5)]">
-                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-gradient-to-r from-[#ff5533]/5 to-[#00ff88]/10 rounded-xl pointer-events-none" />
+                                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-[#00bfff]/5 to-[#00ff88]/10 rounded-xl pointer-events-none" />
 
                                     <div className="mb-2 flex flex-col sm:flex-row sm:items-center sm:gap-4 relative z-10">
-                                        <span className="bg-gradient-to-r from-[#ff5533] to-[#00ff88] text-transparent bg-clip-text font-bold font-mono tracking-wider tabular-nums text-lg group-hover:scale-110 transition-transform origin-left">2024</span>
+                                        <span className="bg-gradient-to-r from-[#00bfff] to-[#00ff88] text-transparent bg-clip-text font-bold font-mono tracking-wider tabular-nums text-lg group-hover:scale-110 transition-transform origin-left">2024</span>
                                         <span className="text-white/90 font-medium text-base md:text-lg tracking-wide uppercase text-xs sm:text-sm">Embraced Full-Stack Development</span>
                                     </div>
                                     <p className="text-white/50 text-xs sm:text-sm font-sans leading-relaxed mt-2 relative z-10">

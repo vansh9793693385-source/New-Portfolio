@@ -83,17 +83,19 @@ export default function Certifications() {
                 .animate-marquee:hover {
                     animation-play-state: paused;
                 }
+                @keyframes scan {
+                    0% { transform: translateX(-100%); }
+                    50% { transform: translateX(100%); }
+                    100% { transform: translateX(-100%); }
+                }
             `}</style>
 
             <div className="max-w-7xl mx-auto px-6 md:px-16 lg:px-24 mb-20 flex flex-col items-center text-center">
-                <h3
-                    className="text-5xl md:text-6xl lg:text-7xl font-sans font-medium tracking-tight text-[#f2ede4] mb-4"
-                    style={{ textShadow: "0 4px 24px rgba(242, 237, 228, 0.15)" }}
-                >
-                    <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#ff8c00]">
-                        Cert
+                <h3 className="text-4xl md:text-5xl lg:text-6xl font-sans font-medium text-[#f2ede4] mb-4 tracking-tight">
+                    Verified{" "}
+                    <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">
+                        Expertise.
                     </span>
-                    ifications.
                 </h3>
                 <p className="text-white/40 font-mono text-sm mt-2 tracking-widest uppercase">
                     {`// Continuous learning & credentials`}
@@ -125,7 +127,14 @@ export default function Certifications() {
                                             className="absolute w-full h-full rounded-3xl bg-[#0e0e12] border border-white/10 p-8 flex flex-col justify-between overflow-hidden"
                                             style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                                         >
-                                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#ff5533] to-[#00ff88]" />
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00ff88]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                                            {/* Card Top Border Accent */}
+                                            <div className="overflow-hidden h-1 w-full rounded-t-2xl relative">
+                                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#00bfff] to-[#00ff88]" />
+                                                {/* Scanning Line Effect */}
+                                                <div className="absolute top-0 left-0 w-1/3 h-1 bg-white/50 blur-[2px] -translate-x-full group-hover:animate-[scan_2s_ease-in-out_infinite]" />
+                                            </div>
 
                                             <div>
                                                 <span className="font-mono text-xs text-white/40 tracking-widest uppercase mb-4 block">

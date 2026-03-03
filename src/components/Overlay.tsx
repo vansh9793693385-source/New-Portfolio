@@ -40,10 +40,10 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity2, y: y2 }}
                 className="absolute inset-0 flex flex-col items-start justify-center text-left px-8 md:px-24"
             >
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/60 drop-shadow-md">
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/40 drop-shadow-md">
                     I build digital
                     <br />
-                    <span className="text-orange-500">experiences.</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">experiences.</span>
                 </h2>
             </motion.div>
 
@@ -52,10 +52,10 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 style={{ opacity: opacity3, y: y3 }}
                 className="absolute inset-0 flex flex-col items-end justify-center text-right px-8 md:px-24"
             >
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/60 drop-shadow-md">
+                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/40 drop-shadow-md">
                     Bridging design and
                     <br />
-                    <span className="text-orange-500">engineering.</span>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">engineering.</span>
                 </h2>
             </motion.div>
 

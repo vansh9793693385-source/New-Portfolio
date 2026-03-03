@@ -63,8 +63,9 @@ export default function ScrollNavigator() {
 
                             <button
                                 onClick={() => scrollToSection(section.id)}
-                                className={`transition-all duration-300 rounded-full ${isActive
-                                        ? "w-[6px] h-[24px] bg-[#ff5533] shadow-[0_0_10px_#ff5533]"
+                                className={`rounded-full transition-all duration-300 pointer-events-none
+                                        ${isActive
+                                        ? "w-[6px] h-[24px] bg-[#00bfff] shadow-[0_0_10px_#00bfff]"
                                         : "w-[5px] h-[5px] bg-white/40 hover:bg-white/80"
                                     }`}
                                 aria-label={`Scroll to ${section.label}`}

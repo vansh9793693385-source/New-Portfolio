@@ -32,12 +32,12 @@ const DesktopSynapses = () => (
 
         {/* Animated Data Pulses */}
         <g className="synapse-flow" strokeWidth="0.3" fill="none" vectorEffect="non-scaling-stroke">
-            <path d="M 50 10 L 25 35" stroke="#ff5533" />
+            <path d="M 50 10 L 25 35" stroke="#00bfff" />
             <path d="M 50 10 L 75 35" stroke="#00ff88" />
 
-            <path d="M 25 35 L 10 65" stroke="#ff5533" />
-            <path d="M 25 35 L 25 75" stroke="#ff5533" />
-            <path d="M 25 35 L 40 65" stroke="#ff5533" />
+            <path d="M 25 35 L 10 65" stroke="#00bfff" />
+            <path d="M 25 35 L 25 75" stroke="#00bfff" />
+            <path d="M 25 35 L 40 65" stroke="#00bfff" />
 
             <path d="M 75 35 L 60 65" stroke="#00ff88" />
             <path d="M 75 35 L 75 75" stroke="#00ff88" />
@@ -64,12 +64,12 @@ const MobileSynapses = () => (
 
         {/* Animated Data Pulses */}
         <g className="synapse-flow" strokeWidth="0.5" fill="none" vectorEffect="non-scaling-stroke">
-            <path d="M 50 5 L 50 18" stroke="#ff5533" />
+            <path d="M 50 5 L 50 18" stroke="#00bfff" />
             <path d="M 50 5 C 105 5, 105 55, 50 55" stroke="#00ff88" />
 
-            <path d="M 50 18 L 25 30" stroke="#ff5533" />
-            <path d="M 50 18 L 75 30" stroke="#ff5533" />
-            <path d="M 50 18 L 50 42" stroke="#ff5533" />
+            <path d="M 50 18 L 25 30" stroke="#00bfff" />
+            <path d="M 50 18 L 75 30" stroke="#00bfff" />
+            <path d="M 50 18 L 50 42" stroke="#00bfff" />
 
             <path d="M 50 55 L 25 67" stroke="#00ff88" />
             <path d="M 50 55 L 75 67" stroke="#00ff88" />
@@ -87,8 +87,8 @@ const TechDot = ({ label, angle }: TechDotProps) => (
     <div
         className="absolute z-20"
         style={{
-            left: `calc(50% + ${Math.cos(angle) * 75}px)`,
-            top: `calc(50% + ${Math.sin(angle) * 75}px)`,
+            left: `calc(50% + ${Math.cos(angle)} * var(--orbit-radius, 75px))`,
+            top: `calc(50% + ${Math.sin(angle)} * var(--orbit-radius, 75px))`,
             transform: 'translate(-50%, -50%)' // Center the dot on the exact coordinate
         }}
     >
@@ -131,7 +131,7 @@ const SubNode = ({ label, techs, mobileTop, mobileLeft, desktopTop, desktopLeft,
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" style={{ overflow: "visible" }}>
                 {techs.map((_, i) => {
                     const angle = (i * (360 / techs.length)) * (Math.PI / 180);
-                    return <line key={i} x1="50%" y1="50%" x2={`calc(50% + ${Math.cos(angle) * 75}px)`} y2={`calc(50% + ${Math.sin(angle) * 75}px)`} stroke="rgba(255,255,255,0.15)" strokeDasharray="3 3" />
+                    return <line key={i} x1="50%" y1="50%" x2={`calc(50% + ${Math.cos(angle)} * var(--orbit-radius, 75px))`} y2={`calc(50% + ${Math.sin(angle)} * var(--orbit-radius, 75px))`} stroke="rgba(255,255,255,0.15)" strokeDasharray="3 3" />
                 })}
             </svg>
 
@@ -160,7 +160,7 @@ export default function Skills() {
             `}</style>
 
             {/* Background Ambient Lights */}
-            <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-[#ff5533]/5 rounded-full blur-[120px] pointer-events-none z-0" />
+            <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-[#00bfff]/5 rounded-full blur-[120px] pointer-events-none z-0" />
             <div className="absolute bottom-[10%] right-[-10%] w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
             <div className="max-w-7xl mx-auto px-6 w-full flex flex-col pt-12 md:pt-0 pointer-events-none z-40 relative">
@@ -171,7 +171,7 @@ export default function Skills() {
                     className="mb-8 text-center md:text-left px-4 md:px-12"
                 >
                     <h3 className="text-4xl md:text-5xl font-sans font-medium text-[#f2ede4] mb-4">
-                        Neural <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#ff5533] to-[#00ff88]">Architecture</span>
+                        Neural <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">Architecture</span>
                     </h3>
                     <p className="text-white/40 font-mono text-sm tracking-widest uppercase">
                         {`// Reactive expertise mapping system`}
@@ -179,8 +179,8 @@ export default function Skills() {
                 </motion.div>
             </div>
 
-            {/* Neural Network Container */}
-            <div className="relative w-full h-[1500px] md:h-[1000px] max-w-6xl mx-auto mt-8 z-20">
+            {/* Neural Network Container (Desktop & Tablet Only) */}
+            <div className="hidden md:block relative w-full h-[1000px] max-w-6xl mx-auto mt-8 z-20 [--orbit-radius:45px] sm:[--orbit-radius:55px] md:[--orbit-radius:75px]">
                 {/* Global Synapse Lines drawn via absolute SVG */}
                 <DesktopSynapses />
                 <MobileSynapses />
@@ -198,9 +198,9 @@ export default function Skills() {
                 {/* 2. Full Stack Domain Node */}
                 <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[18%] left-[50%] md:top-[35%] md:left-[25%]">
                     <div className="relative flex items-center justify-center">
-                        <div className="absolute w-20 h-20 bg-[#ff5533]/10 rounded-full blur-lg animate-pulse" />
-                        <motion.div whileHover={{ scale: 1.05 }} className="px-5 py-2 bg-[#111] border border-[#ff5533] rounded-lg shadow-[0_0_20px_rgba(255,85,51,0.3)] cursor-default">
-                            <span className="font-mono text-sm md:text-base font-bold text-[#ff5533]">Full Stack</span>
+                        <div className="absolute w-20 h-20 bg-[#00bfff]/10 rounded-full blur-lg animate-pulse" />
+                        <motion.div whileHover={{ scale: 1.05 }} className="px-5 py-2 bg-[#111] border border-[#00bfff] rounded-lg shadow-[0_0_20px_rgba(0,191,255,0.3)] cursor-default">
+                            <span className="font-mono text-sm md:text-base font-bold text-[#00bfff]">Full Stack</span>
                         </motion.div>
                     </div>
                 </div>
@@ -223,7 +223,7 @@ export default function Skills() {
                     techs={skillsData.frontend}
                     mobileTop="top-[30%]" mobileLeft="left-[25%]"
                     desktopTop="md:top-[65%]" desktopLeft="md:left-[10%]"
-                    borderClass="border-[#ff5533]/40" glowClass="from-[#ff5533] to-[#ff8c00]"
+                    borderClass="border-[#00bfff]/40" glowClass="from-[#00bfff] to-[#00ff88]"
                 />
 
                 <SubNode
@@ -231,7 +231,7 @@ export default function Skills() {
                     techs={skillsData.languages}
                     mobileTop="top-[30%]" mobileLeft="left-[75%]"
                     desktopTop="md:top-[75%]" desktopLeft="md:left-[25%]"
-                    borderClass="border-[#ff5533]/40" glowClass="from-[#ff5533] to-[#ff8c00]"
+                    borderClass="border-[#00bfff]/40" glowClass="from-[#00bfff] to-[#00ff88]"
                 />
 
                 <SubNode
@@ -239,7 +239,7 @@ export default function Skills() {
                     techs={skillsData.backend}
                     mobileTop="top-[42%]" mobileLeft="left-[50%]"
                     desktopTop="md:top-[65%]" desktopLeft="md:left-[40%]"
-                    borderClass="border-[#ff5533]/40" glowClass="from-[#ff5533] to-[#ff8c00]"
+                    borderClass="border-[#00bfff]/40" glowClass="from-[#00bfff] to-[#00ff88]"
                 />
 
                 {/* BRANCH: CYBERSECURITY */}
@@ -266,6 +266,110 @@ export default function Skills() {
                     desktopTop="md:top-[65%]" desktopLeft="md:left-[90%]"
                     borderClass="border-[#00ff88]/40" glowClass="from-[#00ff88] to-[#00bfff]"
                 />
+            </div>
+
+            {/* Mobile Stacked Cards Layout (Phones Only) */}
+            <div className="md:hidden w-full max-w-sm mx-auto mt-8 px-6 flex flex-col gap-6 z-20 relative">
+                {/* Frontend Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00bfff]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                    <h4 className="text-[#00bfff] font-mono text-sm font-bold tracking-widest uppercase mb-4">Frontend</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {skillsData.frontend.map(tech => (
+                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Languages Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00ff88]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                    <h4 className="text-[#00ff88] font-mono text-sm font-bold tracking-widest uppercase mb-4">Languages</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {skillsData.languages.map(tech => (
+                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Backend Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00bfff]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                    <h4 className="text-[#00bfff] font-mono text-sm font-bold tracking-widest uppercase mb-4">Backend</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {skillsData.backend.map(tech => (
+                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Networking Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00ff88]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                    <h4 className="text-[#00ff88] font-mono text-sm font-bold tracking-widest uppercase mb-4">Networking</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {skillsData.networking.map(tech => (
+                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* Bug Bounty Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00bfff]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                    <h4 className="text-[#00bfff] font-mono text-sm font-bold tracking-widest uppercase mb-4">Bug Bounty</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {skillsData.bugbounty.map(tech => (
+                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
+                        ))}
+                    </div>
+                </motion.div>
+
+                {/* OffSec Card */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00ff88]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                    <h4 className="text-[#00ff88] font-mono text-sm font-bold tracking-widest uppercase mb-4">OffSec</h4>
+                    <div className="flex flex-wrap gap-2">
+                        {skillsData.offsec.map(tech => (
+                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
+                        ))}
+                    </div>
+                </motion.div>
             </div>
 
         </section>

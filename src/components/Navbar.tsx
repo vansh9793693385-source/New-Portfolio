@@ -1,18 +1,20 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-    { label: "About", id: "about", color: "#4d9eff", glow: "rgba(77,158,255,0.5)", origin: "left", hoverTransform: "scale(1.1) translateX(2px)" },
-    { label: "Skills", id: "skills", color: "#b54dff", glow: "rgba(181,77,255,0.5)", origin: "center", hoverTransform: "scale(1.15) translateY(-2px)" },
+    { label: "About", id: "about", color: "#00bfff", glow: "rgba(0,191,255,0.5)", origin: "bottom", hoverTransform: "scale(1.1) translateY(-2px)" },
+    { label: "Skills", id: "skills", color: "#00ff88", glow: "rgba(0,255,136,0.5)", origin: "left", hoverTransform: "scale(1.1) rotate(-2deg)" },
     { label: "Work", id: "projects", color: "#4dff88", glow: "rgba(77,255,136,0.5)", origin: "right", hoverTransform: "scale(1.1) translateX(-2px)" },
     { label: "Certs", id: "certs", color: "#ffcb4d", glow: "rgba(255,203,77,0.5)", origin: "left", hoverTransform: "scale(1.15) skewX(-8deg)" },
-    { label: "Contact", id: "contact", color: "#ff5533", glow: "rgba(255,85,51,0.5)", origin: "right", hoverTransform: "scale(1.15) translateY(-1px)" }
+    { label: "Contact", id: "contact", color: "#00bfff", glow: "rgba(0,191,255,0.5)", origin: "right", hoverTransform: "scale(1.15) translateY(-1px)" }
 ];
 
 export default function Navbar() {
     const navRef = useRef<HTMLElement>(null);
     const [activeSection, setActiveSection] = useState("");
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     // Scroll detection — direct DOM class toggle, no re-render
     useEffect(() => {
@@ -65,6 +67,7 @@ export default function Navbar() {
 
     const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
         e.preventDefault();
+        setMobileMenuOpen(false); // Close mobile menu when a link is clicked
         const el = document.getElementById(id);
         if (el) {
             el.scrollIntoView({ behavior: "smooth" });
@@ -162,26 +165,80 @@ export default function Navbar() {
                     onClick={(e) => scrollToSection(e, "contact")}
                     className="rounded-[100px] font-mono text-[0.62rem] tracking-[0.12em] transition-all duration-250 ease-in-out uppercase"
                     style={{
-                        border: "1px solid #ff5533",
+                        border: "1px solid #00bfff",
                         padding: "0.5rem 1.2rem",
-                        color: "#ff5533",
+                        color: "#00bfff",
                         background: "transparent"
                     }}
                     onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "#ff5533";
+                        e.currentTarget.style.background = "#00bfff";
                         e.currentTarget.style.color = "#ffffff";
-                        e.currentTarget.style.boxShadow = "0 0 20px rgba(255,85,51,0.35)";
+                        e.currentTarget.style.boxShadow = "0 0 20px rgba(0,191,255,0.35)";
                     }}
                     onMouseLeave={(e) => {
                         e.currentTarget.style.background = "transparent";
-                        e.currentTarget.style.color = "#ff5533";
+                        e.currentTarget.style.color = "#00bfff";
                         e.currentTarget.style.boxShadow = "none";
                     }}
                     data-hoverable="true"
                 >
                     Hire Me
                 </a>
+                {/* Mobile Menu Toggle */}
+                <button
+                    className="md:hidden flex items-center justify-center rounded-[100px] transition-all duration-250 ease-in-out"
+                    style={{
+                        border: "1px solid rgba(255,255,255,0.15)",
+                        padding: "0.5rem",
+                        color: "rgba(240,237,232,0.6)",
+                        background: "transparent"
+                    }}
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label="Toggle Mobile Menu"
+                >
+                    {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+                </button>
             </div>
+
+            {/* ━━━━━━━━━━━━━━━━━━ MOBILE MENU ━━━━━━━━━━━━━━━━━━ */}
+            {mobileMenuOpen && (
+                <div className="md:hidden absolute top-[64px] left-0 right-0 bg-[#070709]/95 backdrop-blur-lg border-b border-white/10 flex flex-col px-[5vw] py-6 gap-6 shadow-2xl">
+                    {NAV_LINKS.map((item) => {
+                        const isActive = activeSection === item.id;
+                        return (
+                            <a
+                                key={item.label}
+                                href={`#${item.id}`}
+                                onClick={(e) => scrollToSection(e, item.id)}
+                                className="font-mono text-sm tracking-[0.14em] uppercase"
+                                style={{
+                                    color: isActive ? item.color : "rgba(240,237,232,0.7)",
+                                    textDecoration: "none",
+                                }}
+                            >
+                                {item.label}
+                            </a>
+                        );
+                    })}
+                    <a
+                        href="/Vaibhav_CV.pdf"
+                        download
+                        className="flex w-fit items-center justify-center rounded-[100px] transition-all duration-250 ease-in-out mt-4"
+                        style={{
+                            border: "1px solid rgba(255,255,255,0.15)",
+                            padding: "0.6rem 1.2rem",
+                            color: "rgba(240,237,232,0.8)",
+                            background: "transparent",
+                            fontSize: "0.75rem",
+                            fontFamily: "monospace",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em"
+                        }}
+                    >
+                        Download CV
+                    </a>
+                </div>
+            )}
         </nav>
     );
 }
