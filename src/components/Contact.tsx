@@ -263,7 +263,7 @@ export default function Contact() {
                             <div className="absolute inset-0 bg-gradient-to-r from-[#00bfff] to-[#00ff88] rounded-full blur-md opacity-40 group-hover:opacity-70 group-hover:blur-lg transition-all duration-500" />
 
                             {/* Inner Button Container */}
-                            <div className="relative flex items-center gap-4 px-8 py-4 bg-[#121212] border border-white/10 group-hover:border-white/20 rounded-full transition-all duration-300">
+                            <div className="relative w-full flex items-center justify-center gap-4 px-8 py-4 bg-[#121212] border border-white/10 group-hover:border-white/20 rounded-full transition-all duration-300">
                                 <span className="text-white font-medium tracking-wide text-[15px] group-hover:text-[#00bfff] transition-colors">
                                     Send Message
                                 </span>
