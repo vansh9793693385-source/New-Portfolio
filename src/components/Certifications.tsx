@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 
 const certs = [
     {
@@ -70,6 +71,8 @@ const certs = [
 ];
 
 export default function Certifications() {
+    const [isPaused, setIsPaused] = useState(false);
+
     return (
         <section id="certs" className="relative w-full py-32 bg-[#121212] z-30 overflow-hidden">
             <style>{`
@@ -79,9 +82,6 @@ export default function Certifications() {
                 }
                 .animate-marquee {
                     animation: marquee 25s linear infinite;
-                }
-                .animate-marquee:hover {
-                    animation-play-state: paused;
                 }
                 @keyframes scan {
                     0% { transform: translateX(-100%); }
@@ -108,13 +108,20 @@ export default function Certifications() {
                 <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-[#121212] to-transparent z-10 pointer-events-none" />
                 <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-[#121212] to-transparent z-10 pointer-events-none" />
 
-                <div className="flex w-max animate-marquee group-hover/marquee:[animation-play-state:paused]">
+                <div
+                    className="flex w-max animate-marquee"
+                    style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
+                >
                     {[0, 1].map((set) => (
                         <div key={set} className="flex gap-8 pr-8">
                             {certs.map((cert, idx) => (
                                 <div
                                     key={`${set}-${idx}`}
                                     className="w-[320px] h-[400px] perspective-[1000px] group cursor-pointer flex-shrink-0"
+                                    onMouseEnter={() => setIsPaused(true)}
+                                    onMouseLeave={() => setIsPaused(false)}
+                                    onTouchStart={() => setIsPaused(true)}
+                                    onTouchEnd={() => setIsPaused(false)}
                                 >
                                     {/* Card Inner Wrapper for 3D Flip */}
                                     <div
