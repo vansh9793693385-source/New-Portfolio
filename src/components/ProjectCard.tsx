@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, MouseEvent } from "react";
+import React, { useRef, MouseEvent, useState, useEffect } from "react";
 
 interface Project {
     title: string;
@@ -9,12 +9,49 @@ interface Project {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
+    const [isMobile, setIsMobile] = useState(false);
     const cardRef = useRef<HTMLDivElement>(null);
     const innerRef = useRef<HTMLDivElement>(null);
     const sheenRef = useRef<HTMLDivElement>(null);
 
+    // Setup mobile detection
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Intersection Observer for mobile auto-hover
+    useEffect(() => {
+        if (!isMobile || !cardRef.current || !innerRef.current || !sheenRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (!innerRef.current || !sheenRef.current) return;
+
+                if (entry.isIntersecting) {
+                    // Apply a static "hovered" 3D state for mobile
+                    innerRef.current.style.transform = `rotateX(10deg) rotateY(-5deg)`;
+                    innerRef.current.style.boxShadow = `0 30px 60px -20px rgba(0,0,0,0.8), 10px 20px 30px rgba(255,255,255,0.03)`;
+                    sheenRef.current.style.background = `radial-gradient(circle 400px at 20% 20%, rgba(255,255,255,0.2), transparent 80%)`;
+                    sheenRef.current.style.opacity = "1";
+                } else {
+                    // Reset when out of view
+                    innerRef.current.style.transform = "rotateX(0deg) rotateY(0deg)";
+                    innerRef.current.style.boxShadow = "0 10px 30px -10px rgba(0,0,0,0.5)";
+                    sheenRef.current.style.opacity = "0";
+                }
+            },
+            { threshold: 0.6 } // Trigger when 60% visible
+        );
+
+        observer.observe(cardRef.current);
+        return () => observer.disconnect();
+    }, [isMobile]);
+
     const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-        if (!cardRef.current || !innerRef.current || !sheenRef.current) return;
+        if (isMobile || !cardRef.current || !innerRef.current || !sheenRef.current) return;
 
         const rect = cardRef.current.getBoundingClientRect();
 
@@ -39,7 +76,7 @@ export default function ProjectCard({ project }: { project: Project }) {
     };
 
     const handleMouseLeave = () => {
-        if (!innerRef.current || !sheenRef.current) return;
+        if (isMobile || !innerRef.current || !sheenRef.current) return;
 
         // Reset directly — no setState
         innerRef.current.style.transform = "rotateX(0deg) rotateY(0deg)";

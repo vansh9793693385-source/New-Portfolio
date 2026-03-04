@@ -22,6 +22,41 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
     const [scrambledSubtitle, setScrambledSubtitle] = useState(subtitle);
     const [isHovered, setIsHovered] = useState(false);
 
+    // Add useInView for mobile scroll animations
+    const [isMobile, setIsMobile] = useState(false);
+    const [isInView, setIsInView] = useState(false);
+    const ref = React.useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!ref.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsInView(true);
+                } else {
+                    setIsInView(false);
+                }
+            },
+            { threshold: 0.5 } // Trigger when 50% visible
+        );
+
+        observer.observe(ref.current);
+        return () => observer.disconnect();
+    }, []);
+
+    // Combine hover (for desktop) and scroll (for mobile)
+    const isActive = isHovered || (isMobile && isInView);
+
     useEffect(() => {
         let iteration = 0;
         const interval = setInterval(() => {
@@ -73,6 +108,7 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
 
     return (
         <div
+            ref={ref}
             className={cn("relative flex flex-col items-center justify-center z-50 select-none", className)}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -116,8 +152,8 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                 {/* Cyan Glitch Layer */}
                 <h1
                     className={cn(
-                        "absolute inset-0 text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.1em] text-[#00bfff] mix-blend-screen opacity-0 transition-opacity duration-300 pointer-events-none text-center whitespace-nowrap",
-                        isHovered && "opacity-100 glitch-layer-1"
+                        "absolute inset-0 text-7xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.05em] sm:tracking-[0.1em] text-[#00bfff] mix-blend-screen opacity-0 transition-opacity duration-300 pointer-events-none text-center whitespace-pre-wrap sm:whitespace-nowrap leading-tight",
+                        isActive && "opacity-100 glitch-layer-1"
                     )}
                     style={{ left: '-4px', top: '2px' }}
                 >
@@ -127,8 +163,8 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                 {/* Green Glitch Layer */}
                 <h1
                     className={cn(
-                        "absolute inset-0 text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.1em] text-[#00ff88] mix-blend-screen opacity-0 transition-opacity duration-300 pointer-events-none text-center whitespace-nowrap",
-                        isHovered && "opacity-100 glitch-layer-2"
+                        "absolute inset-0 text-7xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.05em] sm:tracking-[0.1em] text-[#00ff88] mix-blend-screen opacity-0 transition-opacity duration-300 pointer-events-none text-center whitespace-pre-wrap sm:whitespace-nowrap leading-tight",
+                        isActive && "opacity-100 glitch-layer-2"
                     )}
                     style={{ left: '4px', top: '-2px' }}
                 >
@@ -138,9 +174,9 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                 {/* Base Layer */}
                 <h1
                     className={cn(
-                        "relative text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.1em] text-white transition-all duration-500 ease-out text-center whitespace-nowrap",
+                        "relative text-7xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.05em] sm:tracking-[0.1em] text-white transition-all duration-500 ease-out text-center whitespace-pre-wrap sm:whitespace-nowrap leading-tight",
                         // Dynamic text shadow glows on hover
-                        isHovered ? "scale-[1.02] drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] text-[#ffffff]" : "drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] text-[#f2ede4]"
+                        isActive ? "scale-[1.02] drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] text-[#ffffff]" : "drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] text-[#f2ede4]"
                     )}
                 >
                     {scrambledTitle}
@@ -150,7 +186,7 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                 <div
                     className={cn(
                         "absolute inset-0 pointer-events-none overflow-hidden mix-blend-overlay opacity-0 transition-opacity duration-500 rounded-lg hidden md:block",
-                        isHovered && "opacity-80"
+                        isActive && "opacity-80"
                     )}
                 >
                     <div className="w-full h-[5%] bg-gradient-to-b from-transparent via-[#00bfff]/30 to-transparent animate-scanline" />
@@ -169,15 +205,15 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                     <span
                         className={cn(
                             "absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#121212_0%,#00bfff_50%,#00ff88_100%)] opacity-20 transition-opacity duration-500",
-                            isHovered && "opacity-100"
+                            isActive && "opacity-100"
                         )}
                     />
 
-                    <div className="inline-flex h-full w-full items-center justify-center rounded-full bg-[#111111] px-6 py-2 md:px-10 md:py-3 text-sm font-medium backdrop-blur-3xl transition-all duration-500 z-10">
+                    <div className="inline-flex h-full w-full items-center justify-center rounded-full bg-[#111111] px-4 py-2 sm:px-6 sm:py-2 md:px-10 md:py-3 text-xs sm:text-sm font-medium backdrop-blur-3xl transition-all duration-500 z-10">
                         <p
                             className={cn(
-                                "relative text-sm md:text-xl font-mono text-transparent bg-clip-text bg-gradient-to-r tracking-[0.2em] md:tracking-[0.3em] font-bold uppercase transition-all duration-500",
-                                isHovered ? "from-[#00bfff] to-[#00ff88] scale-[1.05]" : "from-gray-300 to-gray-500"
+                                "relative text-[10px] sm:text-xs md:text-xl font-mono text-transparent bg-clip-text bg-gradient-to-r tracking-[0.1em] sm:tracking-[0.2em] md:tracking-[0.3em] font-bold uppercase transition-all duration-500 whitespace-pre-wrap sm:whitespace-nowrap text-center",
+                                isActive ? "from-[#00bfff] to-[#00ff88] scale-[1.05]" : "from-gray-300 to-gray-500"
                             )}
                         >
                             {scrambledSubtitle}

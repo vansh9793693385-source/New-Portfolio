@@ -48,9 +48,9 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             {/* Section 2: Subtitle 1 (Left aligned) */}
             <motion.div
                 style={{ opacity: opacity2, x: x2, y: y2 }}
-                className="absolute inset-0 flex flex-col items-start justify-center text-left px-8 md:px-24"
+                className="absolute inset-0 flex flex-col items-start justify-center text-left px-4 sm:px-8 md:px-24"
             >
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/40 drop-shadow-md">
+                <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6rem] font-bold tracking-tight max-w-4xl text-white/40 drop-shadow-md">
                     I build digital
                     <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff0055] to-[#ffaa00]">experiences.</span>
@@ -60,9 +60,9 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             {/* Section 3: Subtitle 2 (Right aligned) */}
             <motion.div
                 style={{ opacity: opacity3, x: x3, y: y3 }}
-                className="absolute inset-0 flex flex-col items-end justify-center text-right px-8 md:px-24"
+                className="absolute inset-0 flex flex-col items-end justify-center text-right px-4 sm:px-8 md:px-24"
             >
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/40 drop-shadow-md">
+                <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6rem] font-bold tracking-tight max-w-4xl text-white/40 drop-shadow-md">
                     Bridging design and
                     <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff0055] to-[#ffaa00]">engineering.</span>
@@ -72,9 +72,9 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
             {/* Section 4: Subtitle 3 (Center aligned, scales up) */}
             <motion.div
                 style={{ opacity: opacity4, y: y4, scale: scale4 }}
-                className="absolute inset-0 flex flex-col items-center justify-center text-center px-8 md:px-24"
+                className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-24"
             >
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-white/40 drop-shadow-md">
+                <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6rem] font-bold tracking-tight max-w-4xl text-white/40 drop-shadow-md">
                     Crafting intuitive
                     <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff0055] to-[#ffaa00]">user interfaces.</span>
