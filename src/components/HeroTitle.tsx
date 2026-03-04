@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -25,7 +25,7 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
     useEffect(() => {
         let iteration = 0;
         const interval = setInterval(() => {
-            setScrambledTitle((prev) =>
+            setScrambledTitle(() =>
                 title
                     .split("")
                     .map((letter, index) => {
@@ -49,7 +49,7 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
     useEffect(() => {
         let iteration = 0;
         const interval = setInterval(() => {
-            setScrambledSubtitle((prev) =>
+            setScrambledSubtitle(() =>
                 subtitle
                     .split("")
                     .map((letter, index) => {
