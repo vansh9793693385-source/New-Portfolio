@@ -203,7 +203,7 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="relative w-full min-h-[100dvh] flex flex-col justify-center pt-32 pb-16 bg-[#121212] z-30">
+        <section id="contact" className="relative w-full min-h-[100dvh] flex flex-col justify-center pt-32 pb-40 bg-[#121212] z-30">
 
             <div className="max-w-[85rem] mx-auto w-full px-6 md:px-16 lg:px-24 grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32">
 
