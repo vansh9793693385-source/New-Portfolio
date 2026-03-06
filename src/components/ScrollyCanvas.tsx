@@ -37,25 +37,31 @@ export default function ScrollyCanvas() {
         // Only block the UI for the first 10 frames to instantly fix "Opens Late"
         const unlockThreshold = Math.min(10, totalFramesToLoad);
 
+        // Hard safety timeout — if images stall for any reason, force-unlock after 5s
+        const safetyTimer = setTimeout(() => {
+            setLoadProgress(100);
+            setImagesLoaded(true);
+        }, 5000);
+
+        const handleLoaded = () => {
+            loadedCount++;
+            if (loadedCount <= unlockThreshold) {
+                const visualProgress = Math.round((loadedCount / unlockThreshold) * 100);
+                setLoadProgress(visualProgress);
+            }
+            if (loadedCount === unlockThreshold) {
+                clearTimeout(safetyTimer);
+                setTimeout(() => setImagesLoaded(true), 150);
+            }
+        };
+
         for (let i = 0; i < FRAME_COUNT; i += step) {
             const img = new Image();
             const paddedIndex = i.toString().padStart(3, "0");
             img.src = `/sequence/frame_${paddedIndex}_delay-0.05s.webp`;
-
-            img.onload = () => {
-                loadedCount++;
-
-                // Scale the visual UI progress bar to hit 100% when the threshold is reached
-                if (loadedCount <= unlockThreshold) {
-                    const visualProgress = Math.round((loadedCount / unlockThreshold) * 100);
-                    setLoadProgress(visualProgress);
-                }
-
-                // Unlock the loading screen instantly when we hit our conservative threshold
-                if (loadedCount === unlockThreshold) {
-                    setTimeout(() => setImagesLoaded(true), 150);
-                }
-            };
+            img.onload = handleLoaded;
+            // Count errors too so a single failed file doesn't freeze the loading screen
+            img.onerror = handleLoaded;
             images.push(img);
         }
 

@@ -13,32 +13,28 @@ const skillsData = {
     offsec: ["Burp Suite", "Kali", "Metasploit", "Nmap", "SQLi/XSS", "Malware"]
 };
 
-// SVG Paths connecting the neural nodes
+// SVG Paths connecting the skill nodes
 const DesktopSynapses = () => (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden md:block">
         {/* Base Static Lines */}
-        <g stroke="rgba(255,255,255,0.05)" strokeWidth="0.2" fill="none" vectorEffect="non-scaling-stroke">
+        <g stroke="rgba(255,255,255,0.06)" strokeWidth="0.2" fill="none" vectorEffect="non-scaling-stroke">
             <path d="M 50 10 L 25 35" />
             <path d="M 50 10 L 75 35" />
-
             <path d="M 25 35 L 10 65" />
             <path d="M 25 35 L 25 75" />
             <path d="M 25 35 L 40 65" />
-
             <path d="M 75 35 L 60 65" />
             <path d="M 75 35 L 75 75" />
             <path d="M 75 35 L 90 65" />
         </g>
 
-        {/* Animated Data Pulses */}
-        <g className="synapse-flow" strokeWidth="0.3" fill="none" vectorEffect="non-scaling-stroke">
+        {/* Animated Dot Pulses — tiny round dots travelling along each branch */}
+        <g className="synapse-flow" strokeWidth="0.4" fill="none" strokeLinecap="round" vectorEffect="non-scaling-stroke">
             <path d="M 50 10 L 25 35" stroke="#00bfff" />
             <path d="M 50 10 L 75 35" stroke="#00ff88" />
-
             <path d="M 25 35 L 10 65" stroke="#00bfff" />
             <path d="M 25 35 L 25 75" stroke="#00bfff" />
             <path d="M 25 35 L 40 65" stroke="#00bfff" />
-
             <path d="M 75 35 L 60 65" stroke="#00ff88" />
             <path d="M 75 35 L 75 75" stroke="#00ff88" />
             <path d="M 75 35 L 90 65" stroke="#00ff88" />
@@ -49,28 +45,24 @@ const DesktopSynapses = () => (
 const MobileSynapses = () => (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none z-10 md:hidden overflow-visible">
         {/* Base Static Lines */}
-        <g stroke="rgba(255,255,255,0.05)" strokeWidth="0.3" fill="none" vectorEffect="non-scaling-stroke">
+        <g stroke="rgba(255,255,255,0.06)" strokeWidth="0.3" fill="none" vectorEffect="non-scaling-stroke">
             <path d="M 50 5 L 50 18" />
             <path d="M 50 5 C 105 5, 105 55, 50 55" />
-
             <path d="M 50 18 L 25 30" />
             <path d="M 50 18 L 75 30" />
             <path d="M 50 18 L 50 42" />
-
             <path d="M 50 55 L 25 67" />
             <path d="M 50 55 L 75 67" />
             <path d="M 50 55 L 50 79" />
         </g>
 
-        {/* Animated Data Pulses */}
-        <g className="synapse-flow" strokeWidth="0.5" fill="none" vectorEffect="non-scaling-stroke">
+        {/* Animated Dot Pulses */}
+        <g className="synapse-flow" strokeWidth="0.6" fill="none" strokeLinecap="round" vectorEffect="non-scaling-stroke">
             <path d="M 50 5 L 50 18" stroke="#00bfff" />
             <path d="M 50 5 C 105 5, 105 55, 50 55" stroke="#00ff88" />
-
             <path d="M 50 18 L 25 30" stroke="#00bfff" />
             <path d="M 50 18 L 75 30" stroke="#00bfff" />
             <path d="M 50 18 L 50 42" stroke="#00bfff" />
-
             <path d="M 50 55 L 25 67" stroke="#00ff88" />
             <path d="M 50 55 L 75 67" stroke="#00ff88" />
             <path d="M 50 55 L 50 79" stroke="#00ff88" />
@@ -94,7 +86,8 @@ const TechDot = ({ label, angle }: TechDotProps) => (
     >
         <motion.div
             animate={{ y: [0, -3, 0] }}
-            transition={{ duration: 2 + Math.random() * 2, repeat: Infinity }}
+            // Use angle for a deterministic duration — avoids SSR/client Math.random() hydration mismatch
+            transition={{ duration: 2 + (angle % 2), repeat: Infinity }}
             className="px-2 py-1 bg-[#121212] border border-white/10 rounded-md text-[9px] md:text-[11px] text-white/80 whitespace-nowrap shadow-xl"
         >
             {label}
@@ -147,14 +140,14 @@ const SubNode = ({ label, techs, mobileTop, mobileLeft, desktopTop, desktopLeft,
 export default function Skills() {
     return (
         <section id="skills" className="relative w-full py-24 bg-[#121212] overflow-hidden z-30">
-            {/* Global Animation for Synapse Flow */}
+            {/* Global Animation for Synapse Dot Flow */}
             <style>{`
                 .synapse-flow {
-                    stroke-dasharray: 8 16;
-                    animation: digitalFlow 20s linear infinite;
+                    stroke-dasharray: 2 18;
+                    animation: dotFlow 8s linear infinite;
                 }
-                @keyframes digitalFlow {
-                    from { stroke-dashoffset: 1000; }
+                @keyframes dotFlow {
+                    from { stroke-dashoffset: 80; }
                     to { stroke-dashoffset: 0; }
                 }
             `}</style>
@@ -171,7 +164,7 @@ export default function Skills() {
                     className="mb-8 text-center md:text-left px-4 md:px-12"
                 >
                     <h3 className="text-4xl md:text-5xl font-sans font-medium text-[#f2ede4] mb-4">
-                        Neural <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">Architecture</span>
+                        Tech <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">Stacks</span>
                     </h3>
                     <p className="text-white/40 font-mono text-sm tracking-widest uppercase">
                         {`// Reactive expertise mapping system`}
