@@ -25,7 +25,7 @@ const certs = [
         issuer: "VoltOfCode",
         year: "2025",
         id: "voc-ehc-2025",
-        description: "A formal recognition of professional accomplishment, validating specialized technical proficiency and a commitment to continuous development. This certification underscores a dedication to mastering new technologies, refining core engineering skills, and maintaining a high standard of excellence in software engineering.",
+        description: "A hands-on course covering ethical hacking methodologies, penetration testing techniques, vulnerability assessment, web application security, and real-world offensive security practices.",
         link: "/certs/Certificate.pdf"
     },
     {
@@ -78,7 +78,7 @@ export default function Certifications() {
             <style>{`
                 @keyframes marquee {
                     0% { transform: translateX(0%); }
-                    100% { transform: translateX(-50%); }
+                    100% { transform: translateX(-100%); }
                 }
                 .animate-marquee {
                     animation: marquee 25s linear infinite;
@@ -117,84 +117,82 @@ export default function Certifications() {
                     className="flex w-max animate-marquee"
                     style={{ animationPlayState: isPaused ? 'paused' : 'running' }}
                 >
-                    {[0, 1].map((set) => (
-                        <div key={set} className="flex gap-8 pr-8">
-                            {certs.map((cert, idx) => (
+                    <div className="flex gap-8 pr-8">
+                        {certs.map((cert, idx) => (
+                            <div
+                                key={`cert-${idx}`}
+                                className="w-[320px] h-[400px] perspective-[1000px] group cursor-pointer flex-shrink-0"
+                                onMouseEnter={() => setIsPaused(true)}
+                                onMouseLeave={() => setIsPaused(false)}
+                                onTouchStart={() => setIsPaused(true)}
+                                onTouchEnd={() => setIsPaused(false)}
+                            >
+                                {/* Card Inner Wrapper for 3D Flip */}
                                 <div
-                                    key={`${set}-${idx}`}
-                                    className="w-[320px] h-[400px] perspective-[1000px] group cursor-pointer flex-shrink-0"
-                                    onMouseEnter={() => setIsPaused(true)}
-                                    onMouseLeave={() => setIsPaused(false)}
-                                    onTouchStart={() => setIsPaused(true)}
-                                    onTouchEnd={() => setIsPaused(false)}
+                                    className="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)]"
+                                    style={{ transformStyle: 'preserve-3d', WebkitTransformStyle: 'preserve-3d' }}
                                 >
-                                    {/* Card Inner Wrapper for 3D Flip */}
+
+                                    {/* FRONT FACE */}
                                     <div
-                                        className="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)]"
-                                        style={{ transformStyle: 'preserve-3d', WebkitTransformStyle: 'preserve-3d' }}
+                                        className="absolute w-full h-full rounded-3xl bg-[#0e0e12] border border-white/10 p-8 flex flex-col justify-between overflow-hidden"
+                                        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                                     >
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#00ff88]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                                        {/* FRONT FACE */}
-                                        <div
-                                            className="absolute w-full h-full rounded-3xl bg-[#0e0e12] border border-white/10 p-8 flex flex-col justify-between overflow-hidden"
-                                            style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-                                        >
-                                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00ff88]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                                            {/* Card Top Border Accent */}
-                                            <div className="overflow-hidden h-1 w-full rounded-t-2xl relative">
-                                                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#00bfff] to-[#00ff88]" />
-                                                {/* Scanning Line Effect */}
-                                                <div className="absolute top-0 left-0 w-1/3 h-1 bg-white/50 blur-[2px] -translate-x-full group-hover:animate-[scan_2s_ease-in-out_infinite]" />
-                                            </div>
-
-                                            <div>
-                                                <span className="font-mono text-xs text-white/40 tracking-widest uppercase mb-4 block">
-                                                    {cert.issuer}
-                                                </span>
-                                                <h4 className="text-3xl font-cormorant italic font-semibold text-white/90 leading-snug">
-                                                    {cert.title}
-                                                </h4>
-                                            </div>
-
-                                            <div className="flex items-center gap-2 text-[#00ff88] text-sm font-medium">
-                                                Verify <ArrowUpRight size={16} />
-                                            </div>
+                                        {/* Card Top Border Accent */}
+                                        <div className="overflow-hidden h-1 w-full rounded-t-2xl relative">
+                                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#00bfff] to-[#00ff88]" />
+                                            {/* Scanning Line Effect */}
+                                            <div className="absolute top-0 left-0 w-1/3 h-1 bg-white/50 blur-[2px] -translate-x-full group-hover:animate-[scan_2s_ease-in-out_infinite]" />
                                         </div>
 
-                                        {/* BACK FACE */}
-                                        {/* Removed backdrop-blur-md to fix CSS backface-visibility bug */}
-                                        <div
-                                            className="absolute w-full h-full rounded-3xl bg-[#18181e] border border-white/20 p-8 flex flex-col justify-between"
-                                            style={{
-                                                backfaceVisibility: 'hidden',
-                                                WebkitBackfaceVisibility: 'hidden',
-                                                transform: 'rotateY(180deg)'
-                                            }}
-                                        >
-                                            <div>
-                                                <span className="font-mono text-[10px] text-[#ff5533] tracking-widest uppercase mb-6 block">
-                                                    ID: {cert.id}
-                                                </span>
-                                                <p className="text-white/70 text-sm leading-relaxed">
-                                                    {cert.description}
-                                                </p>
-                                            </div>
-
-                                            <a
-                                                href={cert.link}
-                                                className="w-full py-3 text-center rounded-xl bg-white/10 hover:bg-white text-white hover:text-black transition-colors font-medium text-sm"
-                                                data-hoverable="true"
-                                            >
-                                                Open Certificate
-                                            </a>
+                                        <div>
+                                            <span className="font-mono text-xs text-white/40 tracking-widest uppercase mb-4 block">
+                                                {cert.issuer}
+                                            </span>
+                                            <h4 className="text-3xl font-cormorant italic font-semibold text-white/90 leading-snug">
+                                                {cert.title}
+                                            </h4>
                                         </div>
 
+                                        <div className="flex items-center gap-2 text-[#00ff88] text-sm font-medium">
+                                            Verify <ArrowUpRight size={16} />
+                                        </div>
                                     </div>
+
+                                    {/* BACK FACE */}
+                                    {/* Removed backdrop-blur-md to fix CSS backface-visibility bug */}
+                                    <div
+                                        className="absolute w-full h-full rounded-3xl bg-[#18181e] border border-white/20 p-8 flex flex-col justify-between"
+                                        style={{
+                                            backfaceVisibility: 'hidden',
+                                            WebkitBackfaceVisibility: 'hidden',
+                                            transform: 'rotateY(180deg)'
+                                        }}
+                                    >
+                                        <div>
+                                            <span className="font-mono text-[10px] text-[#ff5533] tracking-widest uppercase mb-6 block">
+                                                ID: {cert.id}
+                                            </span>
+                                            <p className="text-white/70 text-sm leading-relaxed">
+                                                {cert.description}
+                                            </p>
+                                        </div>
+
+                                        <a
+                                            href={cert.link}
+                                            className="w-full py-3 text-center rounded-xl bg-white/10 hover:bg-white text-white hover:text-black transition-colors font-medium text-sm"
+                                            data-hoverable="true"
+                                        >
+                                            Open Certificate
+                                        </a>
+                                    </div>
+
                                 </div>
-                            ))}
-                        </div>
-                    ))}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

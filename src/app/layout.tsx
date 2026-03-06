@@ -8,7 +8,14 @@ const cormorant = Cormorant({ subsets: ["latin"], weight: ["400", "600", "700"],
 
 export const metadata: Metadata = {
   title: "Vaibhav Yadav | Creative Developer",
-  description: "I break things to build them better. Creative Developer and Bug Bounty Hunter.",
+  description: "Vaibhav Yadav — Creative Developer & Security Analyst. Building immersive web experiences and hunting vulnerabilities.",
+  openGraph: {
+    title: "Vaibhav Yadav | Creative Developer",
+    description: "Vaibhav Yadav — Creative Developer & Security Analyst. Building immersive web experiences and hunting vulnerabilities.",
+    images: ["/profile-photo.jpeg"],
+    url: "https://vaibhavyadav.com",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

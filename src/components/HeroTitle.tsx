@@ -192,7 +192,6 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                     <div className="w-full h-[5%] bg-gradient-to-b from-transparent via-[#00bfff]/30 to-transparent animate-scanline" />
                 </div>
             </motion.div>
-
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

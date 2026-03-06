@@ -19,6 +19,11 @@ const icons = {
         <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
+    ),
+    hackerone: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
     )
 };
 
@@ -175,6 +180,21 @@ function EmailCard() {
 }
 
 export default function Contact() {
+    const [submitting, setSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+    const handleSubmit = () => {
+        setSubmitting(true);
+        setSubmitStatus("idle");
+        // Simulate network request
+        setTimeout(() => {
+            setSubmitting(false);
+            setSubmitStatus("success");
+            // Clear status after 5 seconds to allow sending another message
+            setTimeout(() => setSubmitStatus("idle"), 5000);
+        }, 1500);
+    };
+
     return (
         <section id="contact" className="relative w-full min-h-[100dvh] flex flex-col justify-center pt-32 pb-16 bg-[#121212] z-30">
 
@@ -256,7 +276,9 @@ export default function Contact() {
                         {/* Submit Button */}
                         <button
                             type="button"
-                            className="group relative w-full md:w-fit mt-4 flex items-center justify-center"
+                            onClick={handleSubmit}
+                            disabled={submitting}
+                            className="group relative w-full md:w-fit mt-4 flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
                             data-hoverable="true"
                         >
                             {/* Animated Glow Wrapper */}
@@ -265,18 +287,37 @@ export default function Contact() {
                             {/* Inner Button Container */}
                             <div className="relative w-full flex items-center justify-center gap-4 px-8 py-4 bg-[#121212] border border-white/10 group-hover:border-white/20 rounded-full transition-all duration-300">
                                 <span className="text-white font-medium tracking-wide text-[15px] group-hover:text-[#00bfff] transition-colors">
-                                    Send Message
+                                    {submitting ? "Sending..." : "Send Message"}
                                 </span>
-                                <svg
-                                    width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                                    className="text-white group-hover:text-[#00bfff] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
-                                >
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
+                                {submitting ? (
+                                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                ) : (
+                                    <svg
+                                        width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                        className="text-white group-hover:text-[#00bfff] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+                                    >
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                )}
                             </div>
                         </button>
+
+                        {/* Feedback Messages */}
+                        {submitStatus === "success" && (
+                            <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-[#00ff88] text-sm mt-2">
+                                Message sent! I&apos;ll get back to you soon.
+                            </motion.p>
+                        )}
+                        {submitStatus === "error" && (
+                            <motion.p initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} className="text-[#ff0055] text-sm mt-2">
+                                Error sending message. Please try again.
+                            </motion.p>
+                        )}
                     </div>
                 </motion.div>
 
@@ -350,9 +391,10 @@ export default function Contact() {
                         <div className="mt-4">
                             <span className="text-[11px] font-sans text-white/40 mb-4 block tracking-wide">Social Links</span>
                             <div className="flex items-center gap-4">
-                                <SocialIcon href="https://www.github.com/vansh9793693385-source" icon="github" />
-                                <SocialIcon href="https://www.linkedin.com/in/vaibhav-yadav-80b891330" icon="linkedin" />
-                                <SocialIcon href="https://twitter.com/vanshh_00" icon="twitter" />
+                                <SocialIcon href="#" icon="github" />
+                                <SocialIcon href="#" icon="linkedin" />
+                                <SocialIcon href="#" icon="twitter" />
+                                <SocialIcon href="#" icon="hackerone" />
                             </div>
                         </div>
                     </div>

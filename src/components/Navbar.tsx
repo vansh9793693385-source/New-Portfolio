@@ -80,8 +80,17 @@ export default function Navbar() {
             className="fixed top-0 left-0 right-0 z-[400] h-[64px] flex justify-between items-center px-[3.5vw] transition-all duration-300 ease-in-out bg-transparent border-b border-transparent"
             style={{ willChange: "background-color, border-color, backdrop-filter" }}
         >
-            {/* ━━━━━━━━━━━━━━━━━━ LEFT — Logo only ━━━━━━━━━━━━━━━━━━ */}
-            <div className="w-[40px] h-[40px]" />
+            {/* ━━━━━━━━━━━━━━━━━━ LEFT — Badge ━━━━━━━━━━━━━━━━━━ */}
+            <div className="flex items-center">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#00bfff]/30 bg-[#00bfff]/10 backdrop-blur-md">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00bfff] opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00bfff]"></span>
+                    </span>
+                    <span className="text-[10px] sm:text-xs font-mono text-[#00bfff] uppercase tracking-wider hidden sm:block">Open to Work</span>
+                    <span className="text-[10px] font-mono text-[#00bfff] uppercase tracking-wider sm:hidden">Available</span>
+                </div>
+            </div>
 
             {/* ━━━━━━━━━━━━━━━━━━ CENTER — Nav links ━━━━━━━━━━━━━━━━━━ */}
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-[2.5rem]">
