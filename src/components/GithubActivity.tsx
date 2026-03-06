@@ -55,8 +55,6 @@ export default function GithubActivity() {
                             blockSize={14}
                             blockMargin={5}
                             blockRadius={3}
-                            hideColorLegend={false}
-                            hideTotalCount={false}
                         />
                     </div>
                 </motion.div>
