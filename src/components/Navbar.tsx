@@ -139,7 +139,7 @@ export default function Navbar() {
 
                 {/* CV Download button (Hidden on Mobile) */}
                 <a
-                    href="/Vaibhav_CV.pdf"
+                    href="/Vaibhav_Yadav_Resume.pdf"
                     download
                     className="hidden md:flex items-center justify-center rounded-[100px] transition-all duration-250 ease-in-out"
                     style={{
@@ -230,7 +230,7 @@ export default function Navbar() {
                         );
                     })}
                     <a
-                        href="/Vaibhav_CV.pdf"
+                        href="/Vaibhav_Yadav_Resume.pdf"
                         download
                         className="flex w-fit items-center justify-center rounded-[100px] transition-all duration-250 ease-in-out mt-4"
                         style={{
