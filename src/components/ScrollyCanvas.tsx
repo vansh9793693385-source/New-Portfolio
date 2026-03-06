@@ -115,8 +115,9 @@ export default function ScrollyCanvas() {
         const img = imagesRef.current[currentFrameRef.current];
         if (!img) return;
 
-        // Ensure canvas sizing is correct using devicePixelRatio
-        const dpr = window.devicePixelRatio || 1;
+        // Ensure canvas sizing is correct but explicitly CAP the device pixel ratio to 1.5x
+        // This stops iPhones (3x DPR) from crashing the GPU trying to render 4K textures at 60fps
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
         // Only resize if internal dimensions don't match (prevents performance hit)
         const displayWidth = Math.floor(canvas.clientWidth * dpr);
@@ -208,7 +209,7 @@ export default function ScrollyCanvas() {
                 <canvas
                     ref={canvasRef}
                     className="absolute inset-0 w-full h-full object-cover"
-                    style={{ willChange: "contents", imageRendering: "pixelated" }}
+                    style={{ willChange: "transform" }}
                 />
                 <div className="absolute inset-0 bg-black/30 w-full h-full z-10 pointer-events-none" />
                 <Overlay scrollYProgress={scrollYProgress} />
