@@ -59,13 +59,9 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
                     <div key={index} className="overflow-hidden pb-1">
                         <motion.span
                             variants={wordAnim}
-                            className="relative inline-block text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white/90"
+                            className={`relative inline-block text-xl md:text-3xl lg:text-4xl font-bold tracking-tight text-white/90 ${word.toLowerCase().includes("reality") ? "drop-shadow-[0_0_10px_rgba(249,115,22,0.8)]" : ""}`}
                         >
                             {word}
-                            {/* Make the word "reality" pop with the brand color */}
-                            {word.toLowerCase().includes("reality") && (
-                                <span className="text-orange-500 absolute inset-0 -z-10 blur-sm opacity-50">{word}</span>
-                            )}
                         </motion.span>
                     </div>
                 ))}

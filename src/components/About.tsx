@@ -145,7 +145,7 @@ export default function About() {
                             Developer
                         </span>
                         <br />
-                        <span className="text-white/20 text-2xl sm:text-3xl md:text-4xl lg:text-5xl mr-3">&</span>
+                        <span className="text-white/20 text-2xl sm:text-3xl md:text-4xl lg:text-5xl mr-3">&amp;</span>{" "}
                         Security{" "}
                         <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]" style={{ paddingBottom: "0.15em", paddingRight: "0.15em", display: "inline-block", overflow: "visible" }}>
                             Analyst.

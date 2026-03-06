@@ -128,10 +128,28 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                     60% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 1px); }
                     80% { clip-path: inset(50% 0 30% 0); transform: translate(3px, 1px); }
                 }
-                .glitch-layer-1 {
+                .glitch-text::before,
+                .glitch-text::after {
+                    content: attr(data-text);
+                    position: absolute;
+                    inset: 0;
+                    mix-blend-mode: screen;
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                    pointer-events: none;
+                }
+                .glitch-text.is-active::before {
+                    color: #00bfff;
+                    left: -4px;
+                    top: 2px;
+                    opacity: 1;
                     animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
                 }
-                .glitch-layer-2 {
+                .glitch-text.is-active::after {
+                    color: #00ff88;
+                    left: 4px;
+                    top: -2px;
+                    opacity: 1;
                     animation: glitch-anim-2 3s infinite linear alternate-reverse;
                 }
                 @keyframes scanline {
@@ -149,34 +167,13 @@ export const HeroTitle: React.FC<HeroTitleProps> = ({ title, subtitle, className
                 transition={{ duration: 1.2, ease: [0.25, 1, 0.5, 1] }}
                 className="relative group cursor-default mb-6"
             >
-                {/* Cyan Glitch Layer */}
+                {/* Base Layer with Pseudo Elements for Glitch */}
                 <h1
+                    data-text={title}
                     className={cn(
-                        "absolute inset-0 text-7xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.05em] sm:tracking-[0.1em] text-[#00bfff] mix-blend-screen opacity-0 transition-opacity duration-300 pointer-events-none text-center whitespace-pre-wrap sm:whitespace-nowrap leading-tight",
-                        isActive && "opacity-100 glitch-layer-1"
-                    )}
-                    style={{ left: '-4px', top: '2px' }}
-                >
-                    {title}
-                </h1>
-
-                {/* Green Glitch Layer */}
-                <h1
-                    className={cn(
-                        "absolute inset-0 text-7xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.05em] sm:tracking-[0.1em] text-[#00ff88] mix-blend-screen opacity-0 transition-opacity duration-300 pointer-events-none text-center whitespace-pre-wrap sm:whitespace-nowrap leading-tight",
-                        isActive && "opacity-100 glitch-layer-2"
-                    )}
-                    style={{ left: '4px', top: '-2px' }}
-                >
-                    {title}
-                </h1>
-
-                {/* Base Layer */}
-                <h1
-                    className={cn(
-                        "relative text-7xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.05em] sm:tracking-[0.1em] text-white transition-all duration-500 ease-out text-center whitespace-pre-wrap sm:whitespace-nowrap leading-tight",
+                        "glitch-text relative text-7xl sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-sans font-black uppercase tracking-[0.05em] sm:tracking-[0.1em] text-white transition-all duration-500 ease-out text-center whitespace-pre-wrap sm:whitespace-nowrap leading-tight",
                         // Dynamic text shadow glows on hover
-                        isActive ? "scale-[1.02] drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] text-[#ffffff]" : "drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] text-[#f2ede4]"
+                        isActive ? "is-active scale-[1.02] drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] text-[#ffffff]" : "drop-shadow-[0_0_10px_rgba(255,255,255,0.1)] text-[#f2ede4]"
                     )}
                 >
                     {scrambledTitle}

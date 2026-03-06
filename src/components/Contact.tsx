@@ -167,8 +167,8 @@ function EmailCard() {
                                     className="h-[1px] bg-[#00bfff] transition-all duration-500"
                                     style={{ width: hovered ? "2.5rem" : "1.25rem", opacity: hovered ? 1 : 0.4 }}
                                 />
-                                <span className="text-[10px] font-mono tracking-widest text-white/25 uppercase">
-                                    {hovered ? "Click to open mail" : "Hover me"}
+                                <span className={`text-[10px] font-mono tracking-widest text-white/25 uppercase transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`}>
+                                    Click to open mail
                                 </span>
                             </div>
                         </div>
@@ -214,7 +214,7 @@ export default function Contact() {
                         <div className="absolute -top-10 -left-10 w-40 h-40 bg-[#00bfff] rounded-full blur-[100px] opacity-20 pointer-events-none" />
 
                         <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-sans font-medium tracking-tight text-[#f2ede4] leading-[1.1] relative z-10">
-                            Lets Work <br />
+                            Let&apos;s Work <br />
                             <span className="font-cormorant italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#00bfff] to-[#00ff88]">
                                 Together.
                             </span>
