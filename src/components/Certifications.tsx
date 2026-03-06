@@ -8,7 +8,7 @@ export default function Certifications() {
             title: "Git Fundamentals",
             description: "Advanced Version Control",
             date: "2026",
-            link: "#", // Replace with your actual certificate URL
+            link: "/certs/7a9e3a535a072e26ee7c9829e10894bc.pdf",
             iconClassName: "text-[#00bfff]",
             titleClassName: "text-[#00bfff] font-mono",
             className:
@@ -19,7 +19,7 @@ export default function Certifications() {
             title: "Python Programming",
             description: "Software Development",
             date: "2026",
-            link: "#", // Replace with your actual certificate URL
+            link: "/certs/aaf655ea3e67ba1e894db5705f494c31.pdf",
             iconClassName: "text-[#00ff88]",
             titleClassName: "text-[#00ff88] font-mono",
             className:
@@ -30,7 +30,7 @@ export default function Certifications() {
             title: "Ethical Hacking",
             description: "A hands-on course covering ethical hacking methodologies, penetration testing techniques, vulnerability assessment, web application security, and real-world offensive security practices.",
             date: "2025",
-            link: "#", // Replace with your actual certificate URL
+            link: "/certs/Certificate.pdf",
             iconClassName: "text-[#ffcb4d]",
             titleClassName: "text-[#ffcb4d] font-mono",
             className:
