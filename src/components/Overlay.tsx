@@ -69,7 +69,7 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                 </h2>
             </motion.div>
 
-            {/* Section 4: Subtitle 3 (Center aligned, scales up) */}
+            {/* Section 4: Subtitle 3 (Center aligned, scales up) & CTA */}
             <motion.div
                 style={{ opacity: opacity4, y: y4, scale: scale4 }}
                 className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-24"
@@ -79,6 +79,40 @@ export default function Overlay({ scrollYProgress }: OverlayProps) {
                     <br />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff0055] to-[#ffaa00]">user interfaces.</span>
                 </h2>
+
+                <div className="mt-12 pointer-events-auto">
+                    <a
+                        href="/Vaibhav_Yadav_Resume.pdf"
+                        download
+                        className="rounded-[100px] font-mono text-sm tracking-[0.14em] transition-all duration-300 ease-in-out uppercase inline-flex items-center gap-3 backdrop-blur-md"
+                        style={{
+                            border: "1px solid #00bfff",
+                            padding: "0.8rem 1.8rem",
+                            color: "#00bfff",
+                            background: "rgba(0,191,255,0.05)"
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "#00bfff";
+                            e.currentTarget.style.color = "#ffffff";
+                            e.currentTarget.style.boxShadow = "0 0 25px rgba(0,191,255,0.4)";
+                            e.currentTarget.style.transform = "translateY(-2px)";
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "rgba(0,191,255,0.05)";
+                            e.currentTarget.style.color = "#00bfff";
+                            e.currentTarget.style.boxShadow = "none";
+                            e.currentTarget.style.transform = "translateY(0)";
+                        }}
+                        data-hoverable="true"
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download CV
+                    </a>
+                </div>
             </motion.div>
 
         </div>

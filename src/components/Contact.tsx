@@ -404,15 +404,53 @@ export default function Contact() {
                                 <SocialIcon href="#" icon="hackerone" />
                             </div>
                         </div>
+
+                        {/* Resume Download CTA */}
+                        <div className="mt-8">
+                            <a
+                                href="/Vaibhav_Yadav_Resume.pdf"
+                                download
+                                className="rounded-[100px] font-mono text-xs tracking-[0.14em] transition-all duration-300 ease-in-out uppercase inline-flex items-center gap-3 w-fit"
+                                style={{
+                                    border: "1px solid rgba(0,191,255,0.5)",
+                                    padding: "0.7rem 1.5rem",
+                                    color: "#00bfff",
+                                    background: "rgba(0,191,255,0.05)"
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = "#00bfff";
+                                    e.currentTarget.style.color = "#ffffff";
+                                    e.currentTarget.style.boxShadow = "0 0 20px rgba(0,191,255,0.3)";
+                                    e.currentTarget.style.transform = "translateY(-2px)";
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = "rgba(0,191,255,0.05)";
+                                    e.currentTarget.style.color = "#00bfff";
+                                    e.currentTarget.style.boxShadow = "none";
+                                    e.currentTarget.style.transform = "translateY(0)";
+                                }}
+                                data-hoverable="true"
+                            >
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Download CV
+                            </a>
+                        </div>
                     </div>
                 </motion.div>
 
             </div>
 
             {/* Copyright Footer */}
-            <div className="absolute bottom-0 w-full pt-8 pb-8 flex flex-col items-center justify-center border-t border-white/5 mt-20">
+            <div className="absolute bottom-0 w-full pt-8 pb-8 flex flex-col items-center justify-center border-t border-white/5 mt-20 text-center">
                 <p className="text-white/40 text-[11px] font-mono tracking-widest uppercase">
                     © 2026 Vaibhav Yadav. All rights reserved.
+                </p>
+                <p className="text-white/20 text-[9px] font-mono tracking-widest uppercase mt-2">
+                    {`// Built with Next.js, Three.js & Framer Motion`}
                 </p>
                 <div className="w-1/3 max-w-md h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mt-4 hidden sm:block"></div>
             </div>

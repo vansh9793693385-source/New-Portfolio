@@ -5,6 +5,7 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
+import GithubActivity from "@/components/GithubActivity";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <section id="featured-creations" className="w-full">
         <Projects />
       </section>
+      <GithubActivity />
       <Certifications />
       <Contact />
     </main>
