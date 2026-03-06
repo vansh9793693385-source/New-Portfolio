@@ -7,9 +7,20 @@ export default function Preloader() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Hold the preloader for 1.5 seconds minimum to ensure the boot sequence matches the cinematic feel
-        const timer = setTimeout(() => setLoading(false), 1500);
-        return () => clearTimeout(timer);
+        // Only run on the client side
+        const hasPlayed = sessionStorage.getItem("preloaderPlayed");
+
+        if (hasPlayed) {
+            // Bypass the preloader instantly if already played this session
+            setLoading(false);
+        } else {
+            // Hold the preloader for 1.5 seconds minimum to ensure the boot sequence matches the cinematic feel
+            const timer = setTimeout(() => {
+                setLoading(false);
+                sessionStorage.setItem("preloaderPlayed", "true");
+            }, 1500);
+            return () => clearTimeout(timer);
+        }
     }, []);
 
     // After animation completely finishes, unmount to save DOM memory

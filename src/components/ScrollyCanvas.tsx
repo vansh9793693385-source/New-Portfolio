@@ -19,8 +19,14 @@ export default function ScrollyCanvas() {
     const currentFrameRef = useRef(0);
     const requestRef = useRef<number>(0);
 
-    // 1. Preload ALL frames on mount
+    // 1. Initial Mount Check for BootSequence & Preloading
     useEffect(() => {
+        // Check session storage FIRST to bypass glitch text immediately
+        const hasBooted = sessionStorage.getItem("bootSequencePlayed");
+        if (hasBooted) {
+            setShowBootSequence(false);
+        }
+
         let loadedCount = 0;
         const images: HTMLImageElement[] = [];
 

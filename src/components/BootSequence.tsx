@@ -11,6 +11,7 @@ export default function BootSequence({ onComplete }: BootSequenceProps) {
     useEffect(() => {
         // Give the animation time to finish before firing onComplete to start the preloader
         const timeout = setTimeout(() => {
+            sessionStorage.setItem("bootSequencePlayed", "true");
             onComplete();
         }, 3200);
 
