@@ -398,10 +398,10 @@ export default function Contact() {
                         <div className="mt-4">
                             <span className="text-[11px] font-sans text-white/40 mb-4 block tracking-wide">Social Links</span>
                             <div className="flex items-center gap-4">
-                                <SocialIcon href="#" icon="github" />
-                                <SocialIcon href="#" icon="linkedin" />
-                                <SocialIcon href="#" icon="twitter" />
-                                <SocialIcon href="#" icon="hackerone" />
+                                <SocialIcon href="https://github.com/vansh9793693385" icon="github" />
+                                <SocialIcon href="https://www.linkedin.com/in/vaibhav-yadav-80b891330" icon="linkedin" />
+                                <SocialIcon href="https://twitter.com/vanshh_00" icon="twitter" />
+                                <SocialIcon href="https://hackerone.com/vansh9793693385" icon="hackerone" />
                             </div>
                         </div>
 
