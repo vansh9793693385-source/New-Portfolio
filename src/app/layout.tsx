@@ -22,9 +22,16 @@ export const metadata: Metadata = {
     url: "https://vaibhavyadav.com",
     type: "website",
   },
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  },
   appleWebApp: {
     title: "Vaibhav",
     statusBarStyle: "black-translucent",
+    startupImage: [
+      '/icon.png',
+    ],
   },
 };
 
