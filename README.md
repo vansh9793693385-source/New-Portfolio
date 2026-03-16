@@ -7,7 +7,7 @@ Welcome to my personal portfolio repository! This project is a modern, interacti
 - **Modern Tech Stack**: Built with [Next.js](https://nextjs.org/) (App Router), React, and TypeScript.
 - **Stunning UI/UX**: Styled with [Tailwind CSS](https://tailwindcss.com/) for a sleek, responsive design.
 - **Smooth Animations**: Integrated with [Framer Motion](https://www.framer.com/motion/) for fluid page transitions and interactive elements.
-- **3D Graphics**: Uses [Three.js](https://threejs.org/) for rendering immersive 3D web graphics.
+- **3D Graphics & Interactive Elements**: Uses [Three.js](https://threejs.org/) for rendering immersive 3D web graphics, alongside interactive elements like a simulated terminal and a 3D Journey Map.
 - **Icons**: Beautiful and consistent iconography provided by [Lucide React](https://lucide.dev/).
 - **GitHub Integration**: Displays GitHub contribution calendar using `react-github-calendar`.
 - **Contact Form**: Functional contact form powered by `nodemailer` for seamless communication.
