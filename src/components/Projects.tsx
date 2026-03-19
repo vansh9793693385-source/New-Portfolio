@@ -18,7 +18,7 @@ const projects = [
         tags: ["HTML5", "CSS3", "JavaScript", "Three.js"],
         link: "https://atrangi-portfolio.vercel.app/",
         github: "https://github.com/vaibhav-buildz/atrangi-portfolio",
-        image: "/project-atrangi-portfolio.png",
+        image: "/project-atrangi-portfolio-new.png",
     },
 ];
 
