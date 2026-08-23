@@ -10,7 +10,6 @@ const projects = [
         tags: ["Next.js", "Three.js", "Framer Motion", "Canvas API"],
         link: "https://my-storytelling-portfolio.vercel.app/",
         github: "https://github.com/vaibhav-buildz/Storytelling-Portfolio",
-        image: "/project-storytelling-hero.png",
     },
     {
         title: "Atrangi Portfolio",
@@ -18,7 +17,6 @@ const projects = [
         tags: ["HTML5", "CSS3", "JavaScript", "Three.js"],
         link: "https://atrangi-portfolio.vercel.app/",
         github: "https://github.com/vaibhav-buildz/atrangi-portfolio",
-        image: "/project-atrangi-hero.png",
     },
     {
         title: "3D Portfolio",
@@ -26,7 +24,26 @@ const projects = [
         tags: ["Next.js", "Three.js", "Spline", "GSAP"],
         link: "https://vaibhavyadav.com",
         github: "https://github.com/vaibhav-buildz/3D-Portfolio",
-        image: "/project-3d-custom.png",
+    },
+    {
+        title: "Techmon",
+        description: "A modern developer social platform designed for tech enthusiasts to connect, collaborate, and share ideas seamlessly.",
+        tags: ["Next.js 14", "TypeScript", "Tailwind", "Supabase"],
+        link: "https://techmon-01.vercel.app",
+        github: "https://github.com/vaibhav-buildz",
+    },
+    {
+        title: "Blazion Form",
+        description: "An AI-powered form builder (solo project) enabling dynamic form generation, intelligent response processing, and automated workflows.",
+        tags: ["Next.js", "Supabase", "Gemini AI", "In Progress"],
+        github: "https://github.com/vaibhav-buildz",
+    },
+    {
+        title: "Blazion",
+        description: "A modern marketing website featuring a monochromatic slate/onyx design system with sleek typography and smooth interactions (solo project).",
+        tags: ["Next.js", "Tailwind CSS"],
+        link: "https://blazion-io.vercel.app",
+        github: "https://github.com/vaibhav-buildz",
     },
 ];
 
@@ -60,3 +77,4 @@ export default function Projects() {
         </section>
     );
 }
+

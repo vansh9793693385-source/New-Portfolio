@@ -23,7 +23,12 @@ export default function ScrollyCanvas() {
     // 1. Initial Mount Check for BootSequence & Preloading
     useEffect(() => {
         // Check session storage to decide whether to show the boot sequence
-        const hasBooted = sessionStorage.getItem("bootSequencePlayed");
+        let hasBooted = false;
+        try {
+            hasBooted = !!sessionStorage.getItem("bootSequencePlayed");
+        } catch {
+            // Storage access denied
+        }
         if (!hasBooted) {
             // First visit — show the boot animation
             setShowBootSequence(true);

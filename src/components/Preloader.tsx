@@ -12,7 +12,12 @@ export default function Preloader() {
         setMounted(true);
 
         // Only run on the client side
-        const hasPlayed = sessionStorage.getItem("preloaderPlayed");
+        let hasPlayed = false;
+        try {
+            hasPlayed = !!sessionStorage.getItem("preloaderPlayed");
+        } catch {
+            // Storage access denied
+        }
 
         if (hasPlayed) {
             // Bypass the preloader instantly if already played this session
@@ -21,7 +26,11 @@ export default function Preloader() {
             // Hold the preloader for 1.5 seconds minimum to ensure the boot sequence matches the cinematic feel
             const timer = setTimeout(() => {
                 setLoading(false);
-                sessionStorage.setItem("preloaderPlayed", "true");
+                try {
+                    sessionStorage.setItem("preloaderPlayed", "true");
+                } catch {
+                    // Ignore storage quota or security error
+                }
             }, 1500);
             return () => clearTimeout(timer);
         }

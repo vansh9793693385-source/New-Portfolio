@@ -7,10 +7,7 @@ import { motion } from "framer-motion";
 const skillsData = {
     frontend: ["React", "Next.js", "TypeScript", "Tailwind", "Three.js", "Framer"],
     languages: ["JavaScript", "Python", "C++", "Java", "Go", "Bash"],
-    backend: ["Node.js", "Express", "Docker", "MongoDB", "PostgreSQL", "Redis"],
-    networking: ["TCP/IP", "DNS", "Linux", "Wireshark", "Cloudflare", "VPNs"],
-    bugbounty: ["Recon", "OWASP", "HackerOne", "Fuzzing", "PrivEsc", "Web Exploit"],
-    offsec: ["Burp Suite", "Kali", "Metasploit", "Nmap", "SQLi/XSS", "Malware"]
+    backend: ["Node.js", "Express", "Docker", "MongoDB", "PostgreSQL", "Redis"]
 };
 
 // SVG Paths connecting the skill nodes
@@ -18,26 +15,18 @@ const DesktopSynapses = () => (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none z-10 hidden md:block">
         {/* Base Static Lines */}
         <g stroke="rgba(255,255,255,0.06)" strokeWidth="0.2" fill="none" vectorEffect="non-scaling-stroke">
-            <path d="M 50 10 L 25 35" />
-            <path d="M 50 10 L 75 35" />
-            <path d="M 25 35 L 10 65" />
-            <path d="M 25 35 L 25 75" />
-            <path d="M 25 35 L 40 65" />
-            <path d="M 75 35 L 60 65" />
-            <path d="M 75 35 L 75 75" />
-            <path d="M 75 35 L 90 65" />
+            <path d="M 50 10 L 50 30" />
+            <path d="M 50 30 L 20 65" />
+            <path d="M 50 30 L 50 70" />
+            <path d="M 50 30 L 80 65" />
         </g>
 
         {/* Animated Dot Pulses — tiny round dots travelling along each branch */}
         <g className="synapse-flow" strokeWidth="0.4" fill="none" strokeLinecap="round" vectorEffect="non-scaling-stroke">
-            <path d="M 50 10 L 25 35" stroke="#00bfff" />
-            <path d="M 50 10 L 75 35" stroke="#00ff88" />
-            <path d="M 25 35 L 10 65" stroke="#00bfff" />
-            <path d="M 25 35 L 25 75" stroke="#00bfff" />
-            <path d="M 25 35 L 40 65" stroke="#00bfff" />
-            <path d="M 75 35 L 60 65" stroke="#00ff88" />
-            <path d="M 75 35 L 75 75" stroke="#00ff88" />
-            <path d="M 75 35 L 90 65" stroke="#00ff88" />
+            <path d="M 50 10 L 50 30" stroke="#00bfff" />
+            <path d="M 50 30 L 20 65" stroke="#00bfff" />
+            <path d="M 50 30 L 50 70" stroke="#00ff88" />
+            <path d="M 50 30 L 80 65" stroke="#00bfff" />
         </g>
     </svg>
 );
@@ -46,26 +35,18 @@ const MobileSynapses = () => (
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none z-10 md:hidden overflow-visible">
         {/* Base Static Lines */}
         <g stroke="rgba(255,255,255,0.06)" strokeWidth="0.3" fill="none" vectorEffect="non-scaling-stroke">
-            <path d="M 50 5 L 50 18" />
-            <path d="M 50 5 C 105 5, 105 55, 50 55" />
-            <path d="M 50 18 L 25 30" />
-            <path d="M 50 18 L 75 30" />
-            <path d="M 50 18 L 50 42" />
-            <path d="M 50 55 L 25 67" />
-            <path d="M 50 55 L 75 67" />
-            <path d="M 50 55 L 50 79" />
+            <path d="M 50 5 L 50 20" />
+            <path d="M 50 20 L 25 45" />
+            <path d="M 50 20 L 75 45" />
+            <path d="M 50 20 L 50 75" />
         </g>
 
         {/* Animated Dot Pulses */}
         <g className="synapse-flow" strokeWidth="0.6" fill="none" strokeLinecap="round" vectorEffect="non-scaling-stroke">
-            <path d="M 50 5 L 50 18" stroke="#00bfff" />
-            <path d="M 50 5 C 105 5, 105 55, 50 55" stroke="#00ff88" />
-            <path d="M 50 18 L 25 30" stroke="#00bfff" />
-            <path d="M 50 18 L 75 30" stroke="#00bfff" />
-            <path d="M 50 18 L 50 42" stroke="#00bfff" />
-            <path d="M 50 55 L 25 67" stroke="#00ff88" />
-            <path d="M 50 55 L 75 67" stroke="#00ff88" />
-            <path d="M 50 55 L 50 79" stroke="#00ff88" />
+            <path d="M 50 5 L 50 20" stroke="#00bfff" />
+            <path d="M 50 20 L 25 45" stroke="#00bfff" />
+            <path d="M 50 20 L 75 45" stroke="#00bfff" />
+            <path d="M 50 20 L 50 75" stroke="#00ff88" />
         </g>
     </svg>
 );
@@ -173,13 +154,13 @@ export default function Skills() {
             </div>
 
             {/* Neural Network Container (Desktop & Tablet Only) */}
-            <div className="hidden md:block relative w-full h-[1000px] max-w-6xl mx-auto mt-8 z-20 [--orbit-radius:45px] sm:[--orbit-radius:55px] md:[--orbit-radius:75px]">
+            <div className="hidden md:block relative w-full h-[700px] max-w-6xl mx-auto mt-8 z-20 [--orbit-radius:45px] sm:[--orbit-radius:55px] md:[--orbit-radius:75px]">
                 {/* Global Synapse Lines drawn via absolute SVG */}
                 <DesktopSynapses />
                 <MobileSynapses />
 
                 {/* 1. Core Brain Node */}
-                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[5%] left-[50%] md:top-[10%] md:left-[50%]">
+                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[10%] left-[50%]">
                     <div className="relative flex items-center justify-center">
                         <div className="absolute w-28 h-28 bg-purple-500/20 rounded-full blur-xl animate-pulse" />
                         <motion.div whileHover={{ scale: 1.05 }} className="px-6 py-3 bg-[#111] border border-purple-500/50 rounded-full shadow-[0_0_30px_rgba(168,85,247,0.4)] backdrop-blur-xl cursor-default">
@@ -189,21 +170,11 @@ export default function Skills() {
                 </div>
 
                 {/* 2. Full Stack Domain Node */}
-                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[18%] left-[50%] md:top-[35%] md:left-[25%]">
+                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[30%] left-[50%]">
                     <div className="relative flex items-center justify-center">
                         <div className="absolute w-20 h-20 bg-[#00bfff]/10 rounded-full blur-lg animate-pulse" />
                         <motion.div whileHover={{ scale: 1.05 }} className="px-5 py-2 bg-[#111] border border-[#00bfff] rounded-lg shadow-[0_0_20px_rgba(0,191,255,0.3)] cursor-default">
                             <span className="font-mono text-sm md:text-base font-bold text-[#00bfff]">Full Stack</span>
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* 3. Cybersecurity Domain Node */}
-                <div className="absolute -translate-x-1/2 -translate-y-1/2 z-40 top-[55%] left-[50%] md:top-[35%] md:left-[75%]">
-                    <div className="relative flex items-center justify-center">
-                        <div className="absolute w-20 h-20 bg-[#00ff88]/10 rounded-full blur-lg animate-pulse" />
-                        <motion.div whileHover={{ scale: 1.05 }} className="px-5 py-2 bg-[#111] border border-[#00ff88] rounded-lg shadow-[0_0_20px_rgba(0,255,136,0.3)] cursor-default">
-                            <span className="font-mono text-sm md:text-base font-bold text-[#00ff88]">Cybersecurity</span>
                         </motion.div>
                     </div>
                 </div>
@@ -215,7 +186,7 @@ export default function Skills() {
                     label="Frontend"
                     techs={skillsData.frontend}
                     mobileTop="top-[30%]" mobileLeft="left-[25%]"
-                    desktopTop="md:top-[65%]" desktopLeft="md:left-[10%]"
+                    desktopTop="md:top-[65%]" desktopLeft="md:left-[20%]"
                     borderClass="border-[#00bfff]/40" glowClass="from-[#00bfff] to-[#00ff88]"
                 />
 
@@ -223,7 +194,7 @@ export default function Skills() {
                     label="Languages"
                     techs={skillsData.languages}
                     mobileTop="top-[30%]" mobileLeft="left-[75%]"
-                    desktopTop="md:top-[75%]" desktopLeft="md:left-[25%]"
+                    desktopTop="md:top-[70%]" desktopLeft="md:left-[50%]"
                     borderClass="border-[#00bfff]/40" glowClass="from-[#00bfff] to-[#00ff88]"
                 />
 
@@ -231,33 +202,8 @@ export default function Skills() {
                     label="Backend"
                     techs={skillsData.backend}
                     mobileTop="top-[42%]" mobileLeft="left-[50%]"
-                    desktopTop="md:top-[65%]" desktopLeft="md:left-[40%]"
+                    desktopTop="md:top-[65%]" desktopLeft="md:left-[80%]"
                     borderClass="border-[#00bfff]/40" glowClass="from-[#00bfff] to-[#00ff88]"
-                />
-
-                {/* BRANCH: CYBERSECURITY */}
-                <SubNode
-                    label="Networking"
-                    techs={skillsData.networking}
-                    mobileTop="top-[67%]" mobileLeft="left-[25%]"
-                    desktopTop="md:top-[65%]" desktopLeft="md:left-[60%]"
-                    borderClass="border-[#00ff88]/40" glowClass="from-[#00ff88] to-[#00bfff]"
-                />
-
-                <SubNode
-                    label="Bug Bounty"
-                    techs={skillsData.bugbounty}
-                    mobileTop="top-[67%]" mobileLeft="left-[75%]"
-                    desktopTop="md:top-[75%]" desktopLeft="md:left-[75%]"
-                    borderClass="border-[#00ff88]/40" glowClass="from-[#00ff88] to-[#00bfff]"
-                />
-
-                <SubNode
-                    label="OffSec"
-                    techs={skillsData.offsec}
-                    mobileTop="top-[79%]" mobileLeft="left-[50%]"
-                    desktopTop="md:top-[65%]" desktopLeft="md:left-[90%]"
-                    borderClass="border-[#00ff88]/40" glowClass="from-[#00ff88] to-[#00bfff]"
                 />
             </div>
 
@@ -312,59 +258,9 @@ export default function Skills() {
                         ))}
                     </div>
                 </motion.div>
-
-                {/* Networking Card */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
-                >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00ff88]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-                    <h4 className="text-[#00ff88] font-mono text-sm font-bold tracking-widest uppercase mb-4">Networking</h4>
-                    <div className="flex flex-wrap gap-2">
-                        {skillsData.networking.map(tech => (
-                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
-                        ))}
-                    </div>
-                </motion.div>
-
-                {/* Bug Bounty Card */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
-                >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00bfff]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-                    <h4 className="text-[#00bfff] font-mono text-sm font-bold tracking-widest uppercase mb-4">Bug Bounty</h4>
-                    <div className="flex flex-wrap gap-2">
-                        {skillsData.bugbounty.map(tech => (
-                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
-                        ))}
-                    </div>
-                </motion.div>
-
-                {/* OffSec Card */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    className="p-6 rounded-2xl bg-gradient-to-br from-white/[0.04] to-transparent border border-white/5 backdrop-blur-sm relative overflow-hidden"
-                >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#00ff88]/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-                    <h4 className="text-[#00ff88] font-mono text-sm font-bold tracking-widest uppercase mb-4">OffSec</h4>
-                    <div className="flex flex-wrap gap-2">
-                        {skillsData.offsec.map(tech => (
-                            <span key={tech} className="px-3 py-1.5 bg-black/40 border border-white/10 rounded-md text-xs text-white/80">{tech}</span>
-                        ))}
-                    </div>
-                </motion.div>
             </div>
 
         </section>
     );
 }
+
